@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bookingOverview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="@dimen/activity_horizontal_margin">
+
+    <ImageView
+        android:id="@+id/ivClose"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:clickable="true"
+        android:contentDescription="@null"
+        android:padding="6dp"
+        android:src="@drawable/ic_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/AndroidTitleBlack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/confirm_booking"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivClose" />
+
+    <TextView
+        android:id="@+id/subTitle"
+        style="@style/AndroidItalicMediumLightLowprio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/confirm_booking_subtitle"
+        app:layout_constraintEnd_toEndOf="@+id/title"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/vehicleDetailsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toTopOf="@+id/divider3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subTitle">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/startIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_round_neutral"
+                app:layout_constraintBottom_toBottomOf="@+id/startDateAndTimeTitle"
+                app:layout_constraintEnd_toEndOf="@+id/stationIcon"
+                app:layout_constraintStart_toStartOf="@id/stationIcon"
+                app:layout_constraintTop_toTopOf="@id/startDateAndTimeTitle" />
+
+            <ImageView
+                android:id="@+id/endIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_round_neutral"
+                app:layout_constraintBottom_toBottomOf="@+id/endDateAndTimeTitle"
+                app:layout_constraintEnd_toEndOf="@+id/stationIcon"
+                app:layout_constraintStart_toStartOf="@id/stationIcon"
+                app:layout_constraintTop_toTopOf="@id/endDateAndTimeTitle" />
+
+            <View
+                android:id="@+id/verticalLine"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="@color/light_low_priority_text"
+                app:layout_constraintBottom_toTopOf="@id/endIcon"
+                app:layout_constraintEnd_toEndOf="@+id/stationIcon"
+                app:layout_constraintStart_toStartOf="@id/stationIcon"
+                app:layout_constraintTop_toBottomOf="@id/startIcon" />
+
+            <TextView
+                android:id="@+id/startDateAndTimeTitle"
+                style="@style/AndroidItalicMediumLightLowprio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34dp"
+                android:text="@string/confirm_booking_start_date_time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/startDateAndTimeText"
+                style="@style/AndroidSmallBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/startDateAndTimeTitle"
+                app:layout_constraintTop_toBottomOf="@id/startDateAndTimeTitle"
+                tools:text="26/11/2019, 12:00" />
+
+            <TextView
+                android:id="@+id/durationTitle"
+                style="@style/AndroidItalicMediumLightLowprio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawableStart="@drawable/ic_time"
+                android:drawablePadding="10dp"
+                android:text="@string/booking_duration_header"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toStartOf="@+id/durationText"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/guideline"
+                app:layout_constraintTop_toBottomOf="@id/startDateAndTimeText" />
+
+            <TextView
+                android:id="@+id/durationText"
+                style="@style/AndroidSmallBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/rangeText"
+                app:layout_constraintTop_toTopOf="@id/durationTitle"
+                tools:text="3 h 15 min" />
+
+            <TextView
+                android:id="@+id/rangeTitle"
+                style="@style/AndroidItalicMediumLightLowprio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/ic_range"
+                android:drawablePadding="10dp"
+                android:text="@string/booking_estimated_range_header"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toStartOf="@id/rangeText"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@id/guideline"
+                app:layout_constraintTop_toBottomOf="@id/durationTitle" />
+
+            <TextView
+                android:id="@+id/rangeText"
+                style="@style/AndroidSmallBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/rangeTitle"
+                app:layout_constraintTop_toTopOf="@id/rangeTitle"
+                tools:text="80 km" />
+
+            <TextView
+                android:id="@+id/endDateAndTimeTitle"
+                style="@style/AndroidItalicMediumLightLowprio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/confirm_booking_end_date_time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline"
+                app:layout_constraintTop_toBottomOf="@id/rangeText" />
+
+            <TextView
+                android:id="@+id/endDateAndTimeText"
+                style="@style/AndroidSmallBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/endDateAndTimeTitle"
+                app:layout_constraintStart_toStartOf="@id/guideline"
+                app:layout_constraintTop_toBottomOf="@id/endDateAndTimeTitle"
+                tools:text="26/11/2019, 15:21" />
+
+            <include
+                android:id="@+id/payableAmountView"
+                layout="@layout/view_payable_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/payable_amount_margin_vertical"
+                android:layout_marginBottom="@dimen/payable_amount_margin_vertical"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/endDateAndTimeText" />
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/divider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payableAmountView" />
+
+            <ImageView
+                android:id="@+id/stationIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginVertical="20dp"
+                android:layout_marginEnd="14dp"
+                android:contentDescription="@null"
+                android:minHeight="50dp"
+                android:src="@drawable/pin_notselected"
+                app:layout_constraintBottom_toTopOf="@id/divider2"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider1" />
+
+            <TextView
+                android:id="@+id/stationName"
+                style="@style/AndroidMediumTextBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guideline"
+                app:layout_constraintTop_toBottomOf="@id/divider1"
+                tools:text="Techbase Station" />
+
+            <TextView
+                android:id="@+id/stationDistance"
+                style="@style/AndroidItalicMediumLightLowprio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="@+id/stationName"
+                app:layout_constraintStart_toStartOf="@+id/stationName"
+                app:layout_constraintTop_toBottomOf="@id/stationName"
+                tools:text="Distance: 1.5 km" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="26dp"
+                android:background="@drawable/divider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stationDistance" />
+
+            <ImageView
+                android:id="@+id/vehicleImage"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@null"
+                android:foregroundGravity="top|left"
+                app:layout_constraintBottom_toBottomOf="@+id/vehiclePrice"
+                app:layout_constraintEnd_toStartOf="@+id/imageSpacer"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/vehicleLicense" />
+
+            <Space
+                android:id="@+id/imageSpacer"
+                android:layout_width="38dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/vehicleLicense"
+                app:layout_constraintStart_toEndOf="@id/vehicleImage"
+                app:layout_constraintTop_toBottomOf="@id/divider2" />
+
+            <TextView
+                android:id="@+id/vehicleLicense"
+                style="@style/AndroidSmallBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="38dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageSpacer"
+                app:layout_constraintTop_toBottomOf="@id/divider2"
+                tools:text="R - AB 123" />
+
+            <TextView
+                android:id="@+id/vehicleModelBrand"
+                style="@style/AndroidItalicMediumLightLowprio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                app:layout_constraintEnd_toEndOf="@+id/vehicleLicense"
+                app:layout_constraintStart_toStartOf="@id/vehicleLicense"
+                app:layout_constraintTop_toBottomOf="@+id/vehicleLicense"
+                tools:text="Audi A5" />
+
+            <TextView
+                android:id="@+id/vehicleEngine"
+                style="@style/AndroidSmallBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/ic_electric"
+                android:drawablePadding="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/vehicleModelBrand"
+                app:layout_constraintStart_toStartOf="@id/vehicleModelBrand"
+                app:layout_constraintTop_toBottomOf="@+id/vehicleModelBrand"
+                tools:text="Electronic" />
+
+            <TextView
+                android:id="@+id/vehiclePrice"
+                style="@style/AndroidSmallBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:drawableStart="@drawable/ic_payment"
+                android:drawablePadding="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/vehicleEngine"
+                app:layout_constraintStart_toStartOf="@id/vehicleEngine"
+                app:layout_constraintTop_toBottomOf="@+id/vehicleEngine"
+                tools:text="0.75 ¢/km" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="56dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="@dimen/default_margin_horizontal"
+        android:background="@drawable/divider"
+        app:layout_constraintBottom_toTopOf="@id/btnConfirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/state_primary_btn"
+        android:text="@string/confirm_booking"
+        android:textAllCaps="false"
+        android:textAppearance="@style/AndroidButtonLabelWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

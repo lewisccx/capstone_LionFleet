@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/errorView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:theme="@style/Theme.Material_Light">
+
+    <ImageView
+        android:id="@+id/ivCloseError"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:clickable="true"
+        android:contentDescription="@null"
+        android:padding="6dp"
+        android:src="@drawable/ic_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/error_image"
+        android:layout_width="@dimen/default_center_icon_size"
+        android:layout_height="@dimen/default_center_icon_size"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toTopOf="@+id/error_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:srcCompat="@drawable/ic_general_error" />
+
+    <TextView
+        android:id="@+id/error_message"
+        style="@style/AndroidMediumTextCenteredSignal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/cancel_booking_error_msg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/error_image" />
+
+    <Button
+        android:id="@+id/btnTryAgain"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:background="@drawable/state_primary_btn"
+        android:text="@string/retry_booking"
+        android:textAllCaps="false"
+        android:theme="@style/Theme.Material_Light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnCallServiceCenter"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:background="@drawable/state_secondary_btn"
+        android:text="@string/call_service_center"
+        android:textAllCaps="false"
+        android:theme="@style/Theme.Material_Light"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnTryAgain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

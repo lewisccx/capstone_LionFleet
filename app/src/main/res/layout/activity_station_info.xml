@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.continental.cityfleet.reservation.presentation.station.StationInfoActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include layout="@layout/toolbar_station" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+<!--    <com.google.android.gms.maps.MapView-->
+<!--        android:id="@+id/mapView"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:cameraTargetLat="@dimen/map_lat_germany"-->
+<!--        app:cameraTargetLng="@dimen/map_lng_germany"-->
+<!--        app:cameraZoom="@dimen/map_zoom_level_country"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHeight_percent="0.35"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/toolbar"-->
+<!--        app:uiCompass="false"-->
+<!--        app:uiZoomControls="false" />-->
+
+    <TextView
+        android:id="@+id/txtAddressTitle"
+        style="@style/AndroidSmallBlack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/station_details_vertical_margin"
+        android:text="@string/station_info_address_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtAddressContent" />
+
+    <TextView
+        android:id="@+id/txtAddressContent"
+        style="@style/AndroidInputLabelLightLowprio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/txtAddressTitle"
+        app:layout_constraintTop_toBottomOf="@+id/txtAddressTitle"
+        tools:text="Travalgar Square Placa 1b\n93047 Regensburg" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="txtAddressTitle, txtAddressContent" />
+
+    <TextView
+        android:id="@+id/txtTypeTitle"
+        style="@style/AndroidSmallBlack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:text="@string/station_info_station_type_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/barrier"
+        app:layout_constraintTop_toTopOf="@id/txtAddressTitle" />
+
+    <TextView
+        android:id="@+id/txtTypeContent"
+        style="@style/AndroidInputLabelLightLowprio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/txtTypeTitle"
+        app:layout_constraintStart_toStartOf="@+id/txtTypeTitle"
+        app:layout_constraintTop_toBottomOf="@+id/txtTypeTitle"
+        tools:text="Open air parking" />
+
+    <TextView
+        android:id="@+id/txtLocationTitle"
+        style="@style/AndroidSmallBlack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/station_details_vertical_margin"
+        android:text="@string/station_info_location_title"
+        app:layout_constraintEnd_toEndOf="@+id/txtTypeTitle"
+        app:layout_constraintStart_toStartOf="@id/txtAddressTitle"
+        app:layout_constraintTop_toBottomOf="@id/txtAddressContent" />
+
+    <TextView
+        android:id="@+id/txtLatContent"
+        style="@style/AndroidInputLabelLightLowprio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/txtLocationTitle"
+        app:layout_constraintEnd_toEndOf="@id/txtLocationTitle"
+        app:layout_constraintTop_toBottomOf="@id/txtLocationTitle"
+        tools:text="Latitude: 234,45647’245"/>
+
+    <TextView
+        android:id="@+id/txtLonContent"
+        style="@style/AndroidInputLabelLightLowprio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/txtLatContent"
+        app:layout_constraintEnd_toEndOf="@id/txtLatContent"
+        app:layout_constraintTop_toBottomOf="@id/txtLatContent"
+        tools:text="Longitude: 6578,32525’14"/>
+
+    <TextView
+        android:id="@+id/txtPublicTransportationTitle"
+        style="@style/AndroidSmallBlack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/station_details_vertical_margin"
+        android:text="@string/station_info_transportation_title"
+        app:layout_constraintTop_toBottomOf="@id/txtLonContent"
+        app:layout_constraintStart_toStartOf="@id/txtLocationTitle"
+        app:layout_constraintEnd_toEndOf="@id/txtLocationTitle"/>
+
+    <TextView
+        android:id="@+id/txtPublicTransportationContent"
+        style="@style/AndroidInputLabelLightLowprio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/txtPublicTransportationTitle"
+        app:layout_constraintEnd_toEndOf="@id/txtPublicTransportationTitle"
+        app:layout_constraintTop_toBottomOf="@id/txtPublicTransportationTitle"
+        tools:text="Take the bus line number 5 from the central station and exit on the Travalgar West stop. Then turn left into the Travalgar Avenue. The station is right before the central hall."/>
+
+    <TextView
+        android:id="@+id/txtMiscTitle"
+        style="@style/AndroidSmallBlack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/station_details_vertical_margin"
+        android:text="@string/station_info_misc_title"
+        app:layout_constraintTop_toBottomOf="@id/txtPublicTransportationContent"
+        app:layout_constraintStart_toStartOf="@id/txtPublicTransportationTitle"
+        app:layout_constraintEnd_toEndOf="@id/txtPublicTransportationTitle"/>
+
+    <TextView
+        android:id="@+id/txtMiscContent"
+        style="@style/AndroidInputLabelLightLowprio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/txtMiscTitle"
+        app:layout_constraintEnd_toEndOf="@id/txtMiscTitle"
+        app:layout_constraintTop_toBottomOf="@id/txtMiscTitle"
+        tools:text="There can also be e-bikes and e-scooter rented next to the station."/>
+</androidx.constraintlayout.widget.ConstraintLayout>

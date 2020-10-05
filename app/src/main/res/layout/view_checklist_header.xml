@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/ivCloseChecklist"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:clickable="true"
+        android:contentDescription="@null"
+        android:padding="6dp"
+        android:src="@drawable/ic_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/AndroidTitleBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/confirm_end_trip_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivCloseChecklist" />
+
+    <TextView
+        android:id="@+id/subTitle"
+        style="@style/AndroidItalicMediumLightLowprio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/confirm_end_trip_checklist_subtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <ImageView
+        android:id="@+id/error_icon"
+        android:layout_width="@dimen/default_center_icon_size"
+        android:layout_height="@dimen/default_center_icon_size"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:adjustViewBounds="true"
+        android:contentDescription="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivCloseChecklist"
+        app:srcCompat="@drawable/ic_general_error" />
+
+    <TextView
+        android:id="@+id/error_title"
+        style="@style/AndroidMediumTextCenteredSignal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin_horizontal"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/default_margin_horizontal"
+        android:text="@string/end_trip_requirement_check_txt"
+        app:layout_constraintEnd_toEndOf="@+id/checkListContainer"
+        app:layout_constraintStart_toStartOf="@+id/checkListContainer"
+        app:layout_constraintTop_toBottomOf="@+id/error_icon"
+        tools:text="@string/end_trip_requirement_check_txt" />
+
+    <TextView
+        android:id="@+id/itemBluetooth"
+        style="@style/AndroidInputLabelLightLowprio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/end_trip_item_bluetooth_margin_vertical"
+        android:drawableStart="@drawable/state_end_trip_checklist"
+        android:drawablePadding="@dimen/end_trip_item_drawable_padding"
+        android:gravity="center_vertical"
+        android:text="@string/checklist_bluetooth_txt"
+        android:textColor="@color/end_trip_checklist_color"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/subTitle"
+        tools:text="Bluetooth is enabled" />
+
+    <TextView
+        android:id="@+id/itemInternet"
+        style="@style/AndroidInputLabelLightLowprio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/end_trip_item_margin_vertical"
+        android:drawableStart="@drawable/state_end_trip_checklist"
+        android:drawablePadding="@dimen/end_trip_item_drawable_padding"
+        android:enabled="false"
+        android:gravity="center_vertical"
+        android:text="@string/checklist_internet_txt"
+        android:textColor="@color/end_trip_checklist_color"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@id/itemBluetooth"
+        tools:text="Internet connection is established" />
+
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/default_card_vertical_padding"
+        android:layout_marginBottom="@dimen/default_margin_horizontal"
+        android:background="@drawable/divider"
+        app:layout_constraintEnd_toEndOf="@+id/checkListContainer"
+        app:layout_constraintStart_toStartOf="@+id/checkListContainer"
+        app:layout_constraintTop_toBottomOf="@+id/itemInternet" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupConnectivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="ivCloseChecklist, title, subTitle, itemBluetooth, itemInternet, divider1" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="error_icon, error_title" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="error_title, divider1" />
+
+</merge>

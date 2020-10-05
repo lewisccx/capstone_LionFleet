@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.Material_Light"
+    android:background="@color/light_bg_1"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingVertical="@dimen/default_card_vertical_padding"
+        android:elevation="@dimen/default_card_elevation">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/primary_color">
+
+                <TextView
+                    android:id="@+id/txtHeader"
+                    style="@style/AndroidAppBarTitleWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_horizontal"
+                    android:layout_marginTop="22dp"
+                    android:text="@string/title_profile"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/btnSignOut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_logout"
+                    android:tint="@color/white"
+                    android:contentDescription="@null"
+                    app:layout_constraintBottom_toBottomOf="@+id/txtHeader"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/txtHeader" />
+
+                <TextView
+                    android:id="@+id/txtName"
+                    style="@style/AndroidTitleWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintStart_toStartOf="@id/txtHeader"
+                    app:layout_constraintTop_toBottomOf="@id/txtHeader"
+                    tools:text="John Doe" />
+
+                <TextView
+                    android:id="@+id/txtEmail"
+                    style="@style/AndroidSubtitleWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/txtName"
+                    app:layout_constraintTop_toBottomOf="@id/txtName"
+                    tools:text="John.Doe@example.com" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="32dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/txtPhoneNumberHeader"
+                    style="@style/AndroidInputLabelLightLowprio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_horizontal"
+                    android:text="@string/profile_phone_number"
+                    app:layout_constraintEnd_toStartOf="@id/txtPhoneNumber"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtPhoneNumber"
+                    style="@style/AndroidAppBarTitleBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="48dp"
+                    app:layout_constraintBaseline_toBaselineOf="@id/txtPhoneNumberHeader"
+                    app:layout_constraintBottom_toBottomOf="@id/txtPhoneNumberHeader"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/txtPhoneNumberHeader"
+                    app:layout_constraintTop_toTopOf="@id/txtPhoneNumberHeader"
+                    tools:text="+52 3124524218" />
+
+                <TextView
+                    android:id="@+id/txtAddressHeader"
+                    style="@style/AndroidInputLabelLightLowprio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/profile_address"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="@id/txtPhoneNumberHeader"
+                    app:layout_constraintTop_toBottomOf="@id/txtPhoneNumberHeader" />
+
+                <TextView
+                    android:id="@+id/txtAddress"
+                    style="@style/AndroidAppBarTitleBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBaseline_toBaselineOf="@id/txtAddressHeader"
+                    app:layout_constraintBottom_toBottomOf="@id/txtAddressHeader"
+                    app:layout_constraintStart_toStartOf="@+id/txtPhoneNumber"
+                    app:layout_constraintTop_toTopOf="@id/txtAddressHeader"
+                    tools:text="Sample-Street 24,\n678549 San Diego, CA " />
+
+                <TextView
+                    android:id="@+id/txtValidated"
+                    style="@style/AndroidItalicLightLowprio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:text="@string/profile_validated_message"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtAddress" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <ProgressBar
+        android:id="@+id/profileProgressBar"
+        android:layout_width="@dimen/default_progress_bar_size"
+        android:layout_height="@dimen/default_progress_bar_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"/>
+
+    <include
+        android:id="@+id/btnInvalidDriverLicense"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        layout="@layout/view_profile_no_driverlicense"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginHorizontal="@dimen/default_margin_horizontal"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

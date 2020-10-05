@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_top_header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/textSignUp"
+        style="?header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up_header"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/root_top_header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/root_top_header"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <ImageButton
+        android:id="@+id/imgBtnCancel"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:background="@drawable/ic_close"
+        android:contentDescription="@string/sign_up_cancel_icon_content_desc"
+        app:layout_constraintBottom_toBottomOf="@+id/textSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textSignUp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

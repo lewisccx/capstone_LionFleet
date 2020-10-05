@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="map_lat_germany">51.0834196</dimen>
+    <dimen name="map_lng_germany">10.4234469</dimen>
+    <dimen name="map_zoom_level_country">5</dimen>
+</resources>

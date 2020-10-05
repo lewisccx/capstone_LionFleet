@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="background" format="reference" />
+    <attr name="header" format="reference" />
+    <attr name="label" format="reference" />
+    <attr name="textRegular" format="reference" />
+    <attr name="textItalic" format="reference" />
+    <attr name="editText" format="reference" />
+    <attr name="button" format="reference" />
+</resources>

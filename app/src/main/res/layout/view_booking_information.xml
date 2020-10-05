@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bookingOverview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:background="@color/white">
+
+    <ImageView
+        android:id="@+id/startIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_round_neutral"
+        app:layout_constraintBottom_toBottomOf="@+id/txtDate"
+        app:layout_constraintEnd_toEndOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtStartDateTitle" />
+
+    <ImageView
+        android:id="@+id/endIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_round_neutral"
+        app:layout_constraintBottom_toBottomOf="@+id/txtEndDateTitle"
+        app:layout_constraintEnd_toEndOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txtEndDateTitle" />
+
+    <View
+        android:id="@+id/verticalLine"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="@drawable/vertical_dash_line"
+        app:layout_constraintBottom_toTopOf="@id/endIcon"
+        app:layout_constraintEnd_toEndOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/startIcon" />
+
+    <TextView
+        android:id="@+id/txtStartDateTitle"
+        style="@style/AndroidItalicMediumLightLowprio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bookings_start_date_and_time"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/txtDate"
+        app:layout_constraintTop_toTopOf="@id/startIcon"/>
+
+    <TextView
+        android:id="@+id/txtDate"
+        style="@style/AndroidSmallBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/txtStartDateTitle"
+        tools:text="01.06.2020 10:03" />
+
+    <TextView
+        android:id="@+id/durationTitle"
+        style="@style/AndroidItalicMediumLightLowprio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_time"
+        android:drawablePadding="10dp"
+        android:layout_marginTop="14dp"
+        android:text="@string/booking_duration_header"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/txtDate" />
+
+    <TextView
+        android:id="@+id/txtDuration"
+        style="@style/AndroidSmallBlack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/barrier_values"
+        app:layout_constraintTop_toTopOf="@id/durationTitle"
+        tools:text="3 h 15 min" />
+
+    <TextView
+        android:id="@+id/rangeTitle"
+        style="@style/AndroidItalicMediumLightLowprio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:drawableStart="@drawable/ic_range"
+        android:drawablePadding="10dp"
+        android:text="@string/bookings_est_distance"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/durationTitle" />
+
+    <TextView
+        android:id="@+id/txtEstimatedRange"
+        style="@style/AndroidSmallBlack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/txtDuration"
+        app:layout_constraintStart_toStartOf="@+id/txtDuration"
+        app:layout_constraintTop_toTopOf="@id/rangeTitle"
+        tools:text="80 km" />
+
+    <TextView
+        android:id="@+id/txtEndDateTitle"
+        style="@style/AndroidItalicMediumLightLowprio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/bookings_end_date_and_time"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/txtEstimatedRange"/>
+
+    <TextView
+        android:id="@+id/txtTimeFrame"
+        style="@style/AndroidSmallBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/txtEndDateTitle"
+        tools:text="01.06.2020 13:00" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="56dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_values"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="txtDate, durationTitle, rangeTitle, txtTimeFrame" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

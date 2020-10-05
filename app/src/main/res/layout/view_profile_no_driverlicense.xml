@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/btnNoDriverLicense"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardElevation="@dimen/default_card_elevation">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <TextView
+            android:id="@+id/txtHeadline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/AndroidSmallBlack"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/profile_driver_license_invalid_headline"
+            app:layout_constraintBottom_toTopOf="@+id/txtSubline"
+            app:layout_constraintEnd_toStartOf="@id/rightArrowIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/txtSubline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/AndroidInputLabelLightLowprio"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/profile_driver_license_invalid_subline"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/rightArrowIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtHeadline" />
+
+        <ImageView
+            android:id="@+id/rightArrowIcon"
+            android:layout_width="50dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:background="@color/color_accent"
+            android:contentDescription="@null"
+            android:scaleType="center"
+            android:src="@drawable/ic_attention"
+            android:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

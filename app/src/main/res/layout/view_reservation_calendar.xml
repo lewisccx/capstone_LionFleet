@@ -1,0 +1,52 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/view_reservation_calendar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/btnPreviousDay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/default_margin_horizontal"
+        android:background="@android:color/transparent"
+        android:foregroundGravity="center"
+        android:src="@drawable/ic_chevron_left"
+        android:visibility="invisible"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toBottomOf="@id/txtCurrentDate"
+        app:layout_constraintEnd_toStartOf="@id/txtCurrentDate"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txtCurrentDate" />
+
+    <TextView
+        android:id="@+id/txtCurrentDate"
+        style="@style/AndroidMediumTextBlack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@id/btnNextDay"
+        app:layout_constraintHorizontal_weight="3"
+        app:layout_constraintStart_toEndOf="@id/btnPreviousDay"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnNextDay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/default_margin_horizontal"
+        android:background="@android:color/transparent"
+        android:foregroundGravity="center"
+        android:src="@drawable/ic_chevron_right"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toBottomOf="@id/txtCurrentDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@id/txtCurrentDate"
+        app:layout_constraintTop_toTopOf="@id/txtCurrentDate" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="?background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:theme="@style/Theme.Material_Light">
+
+    <TextView
+        android:id="@+id/textSignUp"
+        style="@style/AndroidTitleBlack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:text="@string/sign_up_text_registration_successful"
+        app:layout_constraintBottom_toTopOf="@+id/textRegistration1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textRegistration1"
+        style="@style/AndroidPageTextBold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:text="@string/sign_up_text_registration_successful_1"
+        app:layout_constraintBottom_toTopOf="@+id/imgCheckIcon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSignUp" />
+
+    <ImageView
+        android:id="@+id/imgCheckIcon"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/sign_up_check_icon_content_desc"
+        android:src="@drawable/ic_check_circle"
+        app:layout_constraintBottom_toTopOf="@+id/textRegistration2"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textRegistration1" />
+
+    <TextView
+        android:id="@+id/textRegistration2"
+        style="@style/AndroidPageTextBold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:text="@string/sign_up_text_registration_successful_2"
+        app:layout_constraintBottom_toTopOf="@+id/textLicense"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgCheckIcon" />
+
+    <TextView
+        android:id="@+id/textLicense"
+        style="@style/AndroidItalicMediumLightLowprio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:text="@string/sign_up_text_driver_license_note"
+        app:layout_constraintBottom_toTopOf="@+id/btnToLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textRegistration2" />
+
+    <Button
+        android:id="@+id/btnToLogin"
+        style="@style/AndroidButtonLabelWhite"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/sign_up_text_go_back_to_login"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textLicense" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

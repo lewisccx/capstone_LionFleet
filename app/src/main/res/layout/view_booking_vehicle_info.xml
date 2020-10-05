@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:background="@color/white">
+
+    <ImageView
+        android:id="@+id/imgVehicle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@null"
+        android:src="@drawable/vehicleplaceholder"
+        app:layout_constraintBottom_toTopOf="@+id/btnStartNow"
+        app:layout_constraintEnd_toStartOf="@+id/guideline1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtLicensePlate"
+        style="@style/AndroidMediumTextBlack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:paddingVertical="2dp"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtLocation"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_weight="3"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toTopOf="@+id/imgVehicle"
+        app:layout_constraintVertical_chainStyle="spread"
+        tools:text="R-AU-123" />
+
+    <TextView
+        android:id="@+id/txtLocation"
+        style="@style/AndroidItalicMediumLightLowprio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:lineSpacingMultiplier="0.8"
+        android:paddingVertical="2dp"
+        android:paddingHorizontal="8dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgVehicle"
+        app:layout_constraintEnd_toEndOf="@+id/txtLicensePlate"
+        app:layout_constraintStart_toStartOf="@+id/txtLicensePlate"
+        app:layout_constraintTop_toBottomOf="@id/txtLicensePlate"
+        tools:text="Travalgar Square" />
+
+    <TextView
+        android:id="@+id/txtDistanceRemaining"
+        style="@style/AndroidItalicMediumLightLowprio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingVertical="2dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/txtLocation"
+        app:layout_constraintBottom_toBottomOf="@+id/txtLocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        tools:text="100km" />
+
+    <Button
+        android:id="@+id/btnStartNow"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/state_primary_btn"
+        android:text="@string/bookings_start_now"
+        android:textAllCaps="false"
+        android:textAppearance="@style/AndroidButtonLabelWhite"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgBatt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toTopOf="@+id/txtDistanceRemaining"
+        app:layout_constraintEnd_toEndOf="@+id/txtDistanceRemaining"
+        app:layout_constraintStart_toStartOf="@+id/txtDistanceRemaining"
+        app:layout_constraintTop_toTopOf="@+id/txtLicensePlate"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:srcCompat="@drawable/ic_battery"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp"
+        app:layout_constraintGuide_percent="0.85" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

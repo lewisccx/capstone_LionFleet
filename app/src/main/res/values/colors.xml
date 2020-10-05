@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="primary_color">#4ed9ba</color>
+    <color name="primary_dark">#32a188</color>
+    <color name="secondary_color">#6236ff</color>
+    <color name="secondary_dark">#4928bf</color>
+
+    <color name="light_bg_1">#f9f9f9</color>
+    <color name="light_bg_2">#e7e7e7</color>
+    <color name="light_low_priority_text">#7E7E7E</color>
+
+    <color name="color_accent">#d41d1d</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">
+        @color/light_low_priority_text
+    </color>
+
+    <color name="dark_bg_1">#170d3b</color>
+    <color name="dark_bg_2">#2d1e66</color>
+    <color name="dark_low_priority_text">#897fb2</color>
+    <color name="signal_color">#e02020</color>
+    <color name="intro_btn_gradient_start_color">#4c84ff</color>
+    <color name="intro_btn_gradient_end_color">#18a3fe</color>
+    <color name="tab_indicator_gray">#c0c0c0</color>
+</resources>

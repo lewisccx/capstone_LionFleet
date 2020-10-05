@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="?background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:theme="@style/Theme.Material_Light_Reservation">
+
+        <ImageView
+            android:id="@+id/topDotDashedLine"
+            android:layout_width="wrap_content"
+            android:layout_height="14dp"
+            android:contentDescription="@null"
+            android:baselineAlignBottom="true"
+            android:src="@drawable/filter_icon_big_dot"
+            app:layout_constraintBaseline_toBaselineOf="@id/textInputStartDate"
+            app:layout_constraintBottom_toBottomOf="@id/textInputStartDate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textInputStartDate" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputStartDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="12dp"
+            app:errorEnabled="false"
+            app:errorTextAppearance="@style/ErrorTextAppearanceMin"
+            app:hintTextAppearance="@style/SignUpTextInputLayoutStyle"
+            app:hintTextColor="@color/secondary_color"
+            app:layout_constraintBottom_toTopOf="@+id/txtStartError"
+            app:layout_constraintEnd_toStartOf="@id/textInputStartTime"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="3"
+            app:layout_constraintStart_toEndOf="@id/topDotDashedLine"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editStartDate"
+                style="?editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:hint="@string/start_date_hint"
+                android:inputType="date"
+                android:textAllCaps="true"
+                android:textColorHighlight="@color/secondary_color"
+                android:textColorHint="@color/secondary_color" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputStartTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:errorEnabled="false"
+            app:errorTextAppearance="@style/ErrorTextAppearance"
+            app:hintTextAppearance="@style/SignUpTextInputLayoutStyle"
+            app:hintTextColor="@color/secondary_color"
+            app:layout_constraintBaseline_toBaselineOf="@id/textInputStartDate"
+            app:layout_constraintBottom_toBottomOf="@id/textInputStartDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintStart_toEndOf="@id/textInputStartDate"
+            app:layout_constraintTop_toTopOf="@id/textInputStartDate"
+            app:layout_constraintVertical_bias="1.0">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editStartTime"
+                style="?editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:hint="@string/start_time_hint"
+                android:inputType="datetime"
+                android:textAllCaps="true"
+                android:textColorHighlight="@color/secondary_color"
+                android:textColorHint="@color/secondary_color"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txtStartError"
+            style="@style/AndroidItalicMediumSignal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/invalid_start_booking"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/textInputStartTime"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@+id/textInputStartDate"
+            app:layout_constraintTop_toBottomOf="@+id/textInputStartDate"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/bottomDotDashedLine"
+            android:layout_width="wrap_content"
+            android:layout_height="14dp"
+            android:contentDescription="@null"
+            android:baselineAlignBottom="true"
+            android:src="@drawable/filter_icon_big_dot"
+            app:layout_constraintBaseline_toBaselineOf="@id/textInputEndDate"
+            app:layout_constraintBottom_toBottomOf="@id/textInputEndDate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textInputEndDate" />
+
+        <include
+            android:id="@+id/middleDashedLine"
+            layout="@layout/dashed_line"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/bottomDotDashedLine"
+            app:layout_constraintEnd_toEndOf="@id/topDotDashedLine"
+            app:layout_constraintStart_toStartOf="@id/topDotDashedLine"
+            app:layout_constraintTop_toBottomOf="@id/topDotDashedLine" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputEndDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="12dp"
+            app:errorEnabled="false"
+            app:errorTextAppearance="@style/ErrorTextAppearanceMin"
+            app:hintTextAppearance="@style/SignUpTextInputLayoutStyle"
+            app:hintTextColor="@color/secondary_color"
+            app:layout_constraintEnd_toStartOf="@id/textInputEndTime"
+            app:layout_constraintHorizontal_weight="3"
+            app:layout_constraintStart_toEndOf="@id/bottomDotDashedLine"
+            app:layout_constraintTop_toBottomOf="@id/txtStartError">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editEndDate"
+                style="?editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:hint="@string/end_date_hint"
+                android:inputType="date"
+                android:textAllCaps="true"
+                android:textColorHighlight="@color/secondary_color"
+                android:textColorHint="@color/secondary_color"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputEndTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:errorEnabled="false"
+            app:errorTextAppearance="@style/ErrorTextAppearance"
+            app:hintTextAppearance="@style/SignUpTextInputLayoutStyle"
+            app:hintTextColor="@color/secondary_color"
+            app:layout_constraintBaseline_toBaselineOf="@id/textInputEndDate"
+            app:layout_constraintBottom_toBottomOf="@id/textInputEndDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textInputEndDate"
+            app:layout_constraintTop_toTopOf="@id/textInputEndDate">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editEndTime"
+                style="?editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:hint="@string/end_time_hint"
+                android:inputType="datetime"
+                android:textAllCaps="true"
+                android:textColorHighlight="@color/secondary_color"
+                android:textColorHint="@color/secondary_color"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txtEndError"
+            style="@style/AndroidItalicMediumSignal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/invalid_end_booking"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/textInputEndTime"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@+id/textInputEndDate"
+            app:layout_constraintTop_toBottomOf="@+id/textInputEndDate"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/rangeIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:layout_marginTop="40dp"
+            android:baselineAlignBottom="true"
+            android:src="@drawable/ic_range_gray"
+            app:layout_constraintBaseline_toBaselineOf="@id/textInputEstimatedRange"
+            app:layout_constraintBottom_toBottomOf="@id/textInputEstimatedRange"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textInputEstimatedRange" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputEstimatedRange"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:backgroundTint="@color/light_low_priority_text"
+            app:errorTextAppearance="@style/ErrorTextAppearance"
+            app:hintTextAppearance="@style/SignUpTextInputLayoutStyle"
+            app:hintTextColor="@color/secondary_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/textInputEndDate"
+            app:layout_constraintTop_toBottomOf="@id/txtEndError">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editEstimatedRange"
+                style="?editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/light_low_priority_text"
+                android:digits="0123456789"
+                android:hint="@string/estimated_range_hint"
+                android:inputType="numberSigned"
+                android:textAllCaps="true"
+                android:textColorHighlight="@color/secondary_color"
+                android:textColorHint="@color/light_low_priority_text"
+                android:visibility="visible"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/confirmButton"
+            style="@style/ReservationButtonStyle.Filter"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:enabled="false"
+            android:text="@string/confirm_button"
+            android:textColor="@android:color/white"
+            android:theme="@style/Theme.MaterialComponents"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

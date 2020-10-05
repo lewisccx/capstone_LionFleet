@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bookingOverview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/white">
+
+    <ImageView
+        android:id="@+id/startIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_round_neutral"
+        app:layout_constraintEnd_toEndOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/endIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_round_neutral"
+        app:layout_constraintBottom_toBottomOf="@+id/txtTimeFrame"
+        app:layout_constraintEnd_toEndOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txtTimeFrame" />
+
+    <View
+        android:id="@+id/verticalLine"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="@drawable/vertical_dash_line"
+        app:layout_constraintBottom_toTopOf="@id/endIcon"
+        app:layout_constraintEnd_toEndOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/startIcon" />
+
+    <TextView
+        android:id="@+id/txtDate"
+        style="@style/AndroidSmallBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/startIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Fri 26.11.2019, 12:00" />
+
+    <TextView
+        android:id="@+id/actualDurationTitle"
+        style="@style/AndroidItalicMediumLightLowprio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:drawableStart="@drawable/ic_time"
+        android:drawablePadding="10dp"
+        android:text="@string/bookings_actual_duration"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/txtDate" />
+
+    <TextView
+        android:id="@+id/durationTitle"
+        style="@style/AndroidItalicMediumLightLowprio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:drawablePadding="10dp"
+        android:text="@string/bookings_book_duration"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/actualDurationTitle" />
+
+    <TextView
+        android:id="@+id/txtDuration"
+        style="@style/AndroidSmallBlack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/txtTravelTime"
+        app:layout_constraintStart_toStartOf="@+id/txtTravelTime"
+        app:layout_constraintTop_toTopOf="@id/durationTitle"
+        tools:text="3 h 15 min" />
+
+    <TextView
+        android:id="@+id/rangeTitle"
+        style="@style/AndroidItalicMediumLightLowprio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:drawableStart="@drawable/ic_range"
+        android:drawablePadding="10dp"
+        android:text="@string/bookings_book_distance"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/durationTitle" />
+
+    <TextView
+        android:id="@+id/txtEstimatedRange"
+        style="@style/AndroidSmallBlack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/txtDuration"
+        app:layout_constraintStart_toStartOf="@+id/txtDuration"
+        app:layout_constraintTop_toTopOf="@id/rangeTitle"
+        tools:text="80 km" />
+
+    <TextView
+        android:id="@+id/txtTimeFrame"
+        style="@style/AndroidSmallBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/txtEstimatedRange"
+        tools:text="Fri 26.11.2019, 15:21" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="56dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_values"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="txtDate, actualDurationTitle, durationTitle, rangeTitle, txtTimeFrame" />
+
+    <TextView
+        android:id="@+id/txtTravelTime"
+        style="@style/AndroidSmallBlack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:textColor="@color/primary_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/barrier_values"
+        app:layout_constraintTop_toTopOf="@+id/actualDurationTitle"
+        tools:text="1 h 12 min" />
+
+    <TextView
+        android:id="@+id/txtTravelTimeLeft"
+        style="@style/AndroidSmallBlack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary_color"
+        app:layout_constraintBottom_toBottomOf="@+id/txtTimeFrame"
+        app:layout_constraintEnd_toEndOf="@+id/txtEstimatedRange"
+        app:layout_constraintStart_toStartOf="@+id/txtEstimatedRange"
+        app:layout_constraintTop_toTopOf="@+id/txtTimeFrame"
+        tools:text="2h 57min left" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Material_Light" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:statusBarColor">@android:color/white</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="background">@style/page_background_white</item>
+        <item name="header">@style/text_header</item>
+        <item name="label">@style/text_label</item>
+        <item name="textRegular">@style/text</item>
+        <item name="textItalic">@style/text_password_validation</item>
+        <item name="editText">@style/edit_text</item>
+        <item name="button">@style/stated_button</item>
+    </style>
+
+    <style name="Theme.Material_Light_Reservation" parent="AppTheme">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:statusBarColor">@android:color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="colorPrimary">@color/secondary_color</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/secondary_color</item>
+        <item name="android:textColorHint">@color/light_low_priority_text</item>
+        <item name="background">@style/page_background_white</item>
+        <item name="header">@style/text_header</item>
+        <item name="label">@style/text_label</item>
+        <item name="textRegular">@style/text</item>
+        <item name="textItalic">@style/text_password_validation</item>
+        <item name="editText">@style/edit_text</item>
+        <item name="button">@style/stated_button</item>
+    </style>
+
+    <style name="Theme.AppCompat.Light.NoActionBar" parent="Theme.AppCompat.Light">
+        <!-- Define styles for YOUR_CUSTOM_THEME here. -->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:statusBarColor">@android:color/white</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="background">@style/page_background_white</item>
+        <item name="header">@style/text_header</item>
+        <item name="label">@style/text_label</item>
+        <item name="textRegular">@style/text</item>
+        <item name="textItalic">@style/text_password_validation</item>
+        <item name="editText">@style/edit_text</item>
+        <item name="button">@style/stated_button</item>
+    </style>
+</resources>

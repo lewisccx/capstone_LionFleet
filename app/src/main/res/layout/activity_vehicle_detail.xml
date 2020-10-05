@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:theme="@style/Theme.Material_Light">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include layout="@layout/toolbar" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <include
+            android:id="@+id/vehicleCard"
+            layout="@layout/view_vehicle_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appbar" />
+
+        <include
+            android:id="@+id/miscInfoView"
+            layout="@layout/view_misc_information"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vehicleCard" />
+
+        <TextView
+            android:id="@+id/txtCalenderTitle"
+            style="@style/AndroidSmallLightLowprio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin_horizontal"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:text="@string/booking_calendar_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/miscInfoView" />
+
+        <ViewAnimator
+            android:id="@+id/viewAnimator"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:inAnimation="@android:anim/fade_in"
+            android:outAnimation="@android:anim/fade_out"
+            android:layout_marginTop="24dp"
+            app:layout_constraintHeight_percent="0.25"
+            app:layout_constraintBottom_toTopOf="@id/btnFilter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtCalenderTitle">
+
+            <include layout="@layout/view_vehicle_detail_loading" />
+
+            <include layout="@layout/view_reservation_calendar" />
+
+            <include layout="@layout/view_vehicle_detail_error" />
+
+        </ViewAnimator>
+
+        <include
+            android:id="@+id/btnFilter"
+            layout="@layout/view_filter_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin_horizontal"
+            android:layout_marginBottom="36dp"
+            app:layout_constraintBottom_toTopOf="@id/btnBookNow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnBookNow"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="@dimen/default_margin_horizontal"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:background="@drawable/state_primary_btn"
+            android:enabled="true"
+            android:gravity="center"
+            android:text="@string/book_now"
+            android:textAppearance="@style/AndroidButtonLabelWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

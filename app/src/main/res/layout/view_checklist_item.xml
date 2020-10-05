@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/itemWindowsClosed"
+            style="@style/AndroidInputLabelBlackItalic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/end_trip_item_margin_vertical"
+            android:drawableStart="@drawable/ic_remove_icon"
+            android:drawablePadding="@dimen/end_trip_item_drawable_padding"
+            android:gravity="center_vertical"
+            android:text="@string/checklist_windows_closed"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Windows are all closed" />
+
+        <TextView
+            android:id="@+id/itemCarLocked"
+            style="@style/AndroidInputLabelBlackItalic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/end_trip_item_margin_vertical"
+            android:drawableStart="@drawable/ic_remove_icon"
+            android:drawablePadding="@dimen/end_trip_item_drawable_padding"
+            android:text="@string/checklist_car_locked"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemWindowsClosed"
+            tools:text="The car is locked" />
+
+        <TextView
+            android:id="@+id/itemFuelCard"
+            style="@style/AndroidInputLabelBlackItalic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/end_trip_item_margin_vertical"
+            android:drawableStart="@drawable/ic_remove_icon"
+            android:drawablePadding="@dimen/end_trip_item_drawable_padding"
+            android:text="@string/checklist_fuel_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemCarLocked"
+            tools:text="The fuel card is on its place" />
+
+        <TextView
+            android:id="@+id/itemChargerPlugged"
+            style="@style/AndroidInputLabelBlackItalic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/end_trip_item_margin_vertical"
+            android:drawableStart="@drawable/ic_remove_icon"
+            android:drawablePadding="@dimen/end_trip_item_drawable_padding"
+            android:text="@string/checklist_charger_plugged"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemFuelCard"
+            tools:text="The station charger is plugged in" />
+
+        <TextView
+            android:id="@+id/itemParkedAtStation"
+            style="@style/AndroidInputLabelBlackItalic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/end_trip_item_margin_vertical"
+            android:drawableStart="@drawable/ic_remove_icon"
+            android:drawablePadding="@dimen/end_trip_item_drawable_padding"
+            android:text="@string/checklist_parked_at_station"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemChargerPlugged"
+            tools:text="Parked at the car’s home station" />
+
+        <TextView
+            android:id="@+id/itemHardwareKey"
+            style="@style/AndroidInputLabelBlackItalic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/end_trip_item_margin_vertical"
+            android:drawableStart="@drawable/ic_remove_icon"
+            android:drawablePadding="@dimen/end_trip_item_drawable_padding"
+            android:text="@string/checklist_hardware_key"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemParkedAtStation"
+            tools:text="Hardware key is on its place." />
+
+        <TextView
+            android:id="@+id/itemTookBelongings"
+            style="@style/AndroidInputLabelBlackItalic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/end_trip_item_margin_vertical"
+            android:drawableStart="@drawable/ic_remove_icon"
+            android:drawablePadding="@dimen/end_trip_item_drawable_padding"
+            android:text="@string/checklist_took_belonging"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemHardwareKey"
+            tools:text="You took all your belongings." />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
