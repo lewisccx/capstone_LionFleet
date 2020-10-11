@@ -3,6 +3,7 @@ package com.sit.capstone_lionfleet.core.di
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.sit.capstone_lionfleet.BuildConfig
+import com.sit.capstone_lionfleet.business.bookings.network.BookingApi
 import com.sit.capstone_lionfleet.business.profile.network.ProfileApi
 import com.sit.capstone_lionfleet.login.network.LoginApi
 import dagger.Module
@@ -30,7 +31,7 @@ object RetrofitModule {
     @Provides
     fun provideRetrofit(gson: Gson, preferenceProvider: PreferenceProvider): Retrofit.Builder {
         return Retrofit.Builder()
-            .baseUrl("http://192.168.43.11:3000/")
+            .baseUrl("https://capstone-cityfleet-api.herokuapp.com/")
             .addConverterFactory(GsonConverterFactory.create(gson))
     }
 
@@ -71,5 +72,13 @@ object RetrofitModule {
         return retrofit.client(
             okHttpClient
         ).build().create(ProfileApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideBookingApi(retrofit: Retrofit.Builder, okHttpClient: OkHttpClient): BookingApi {
+        return retrofit.client(
+            okHttpClient
+        ).build().create(BookingApi::class.java)
     }
 }

@@ -4,19 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bookingOverview"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:background="@color/white">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/startIcon"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:contentDescription="@null"
         android:src="@drawable/ic_round_neutral"
-        app:layout_constraintBottom_toBottomOf="@+id/txtDate"
         app:layout_constraintEnd_toEndOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txtDate" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/verticalLine"
+        android:layout_width="1dp"
+        android:layout_height="@dimen/largest_margin"
+        android:background="@drawable/vertical_dash_line"
+        app:layout_constraintEnd_toEndOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/startIcon" />
 
     <ImageView
         android:id="@+id/endIcon"
@@ -24,23 +32,13 @@
         android:layout_height="24dp"
         android:contentDescription="@null"
         android:src="@drawable/ic_round_neutral"
-        app:layout_constraintBottom_toBottomOf="@+id/txtTimeFrame"
         app:layout_constraintEnd_toEndOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/txtTimeFrame" />
+        app:layout_constraintTop_toBottomOf="@id/verticalLine" />
 
-    <View
-        android:id="@+id/verticalLine"
-        android:layout_width="1dp"
-        android:layout_height="0dp"
-        android:background="@drawable/vertical_dash_line"
-        app:layout_constraintBottom_toTopOf="@id/endIcon"
-        app:layout_constraintEnd_toEndOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/startIcon" />
 
     <TextView
-        android:id="@+id/txtDate"
+        android:id="@+id/txtStartDateTitle"
         style="@style/AndroidSmallBlack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -49,61 +47,40 @@
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@id/startIcon"
         app:layout_constraintTop_toTopOf="parent"
+        tools:text="Start Date" />
+
+    <TextView
+        android:id="@+id/txtStartDate"
+        style="@style/AndroidSmallLightLowprio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/bookingInfoWindow_horizontal_margin"
+        app:layout_constraintBottom_toBottomOf="@id/txtStartDateTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtStartDateTitle"
         tools:text="Fri 26.11.2019, 12:00" />
 
     <TextView
-        android:id="@+id/durationTitle"
-        style="@style/AndroidItalicMediumLightLowprio"
+        android:id="@+id/txtEndDateTitle"
+        style="@style/AndroidSmallBlack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_time"
-        android:drawablePadding="10dp"
-        android:layout_marginTop="14dp"
-        android:text="@string/booking_duration_header"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toBottomOf="@id/endIcon"
         app:layout_constraintStart_toEndOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/txtDate" />
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/endIcon"
+        tools:text="End Date" />
 
     <TextView
-        android:id="@+id/txtDuration"
-        style="@style/AndroidSmallBlack"
-        android:layout_width="0dp"
+        android:id="@+id/txtEndDate"
+        style="@style/AndroidSmallLightLowprio"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginHorizontal="@dimen/bookingInfoWindow_horizontal_margin"
+        app:layout_constraintBottom_toBottomOf="@+id/txtEndDateTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/barrier_values"
-        app:layout_constraintTop_toTopOf="@id/durationTitle"
-        tools:text="3 h 15 min" />
-
-    <TextView
-        android:id="@+id/rangeTitle"
-        style="@style/AndroidItalicMediumLightLowprio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:drawableStart="@drawable/ic_range"
-        android:drawablePadding="10dp"
-        android:text="@string/bookings_est_distance"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/durationTitle" />
-
-    <TextView
-        android:id="@+id/txtEstimatedRange"
-        style="@style/AndroidSmallBlack"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/txtDuration"
-        app:layout_constraintStart_toStartOf="@+id/txtDuration"
-        app:layout_constraintTop_toTopOf="@id/rangeTitle"
-        tools:text="80 km" />
-
-    <TextView
-        android:id="@+id/txtTimeFrame"
-        style="@style/AndroidSmallBlack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/txtEstimatedRange"
+        app:layout_constraintTop_toTopOf="@id/txtEndDateTitle"
         tools:text="Fri 26.11.2019, 15:21" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -113,11 +90,5 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="56dp" />
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier_values"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="end"
-        app:constraint_referenced_ids="txtDate, durationTitle, rangeTitle, txtTimeFrame" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

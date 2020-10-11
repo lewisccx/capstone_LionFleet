@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnStartNow"
         android:layout_width="0dp"
         android:layout_height="50dp"
@@ -29,7 +29,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/state_primary_btn"
+        android:backgroundTint="@color/color_states_material_primary_button"
         android:text="@string/bookings_start_now"
         android:textAllCaps="false"
         android:textAppearance="@style/AndroidButtonLabelWhite"

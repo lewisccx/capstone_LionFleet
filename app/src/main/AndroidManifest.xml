@@ -20,18 +20,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
-        android:debuggable="true">
-        <activity android:name=".business.BusinessActivity"/>
+        android:networkSecurityConfig="@xml/network_security_config">
+
+        <activity android:name=".business.BusinessActivity" />
         <activity android:name=".forgotpassword.ForgotPasswordActivity" />
         <activity
             android:name=".splash.SplashActivity"
             android:theme="@style/AppTheme.Launcher">
-
-        </activity>
-
-        <activity android:name=".signup.ui.activity.RegisterActivity" />
-        <activity android:name=".login.ui.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,9 +34,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
-        </activity>
-        <activity android:name=".appintro.IntroActivity" />
 
+        </activity>
+        <activity android:name=".signup.ui.activity.RegisterActivity" />
+        <activity android:name=".login.ui.LoginActivity" />
+        <activity android:name=".appintro.IntroActivity" />
     </application>
 
 </manifest>

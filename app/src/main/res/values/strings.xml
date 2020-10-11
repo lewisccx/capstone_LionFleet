@@ -342,6 +342,12 @@
     <string name="tv_skip">Skip</string>
     <string name="tv_get_started">Get Started</string>
     <string name="tv_hide_appintro">Dont\'t show it again</string>
+    <string name="profile_driver_license_valid_headline">Your account is activated</string>
+    <string name="profile_driver_license_validated">Please validate your license</string>
+    <string name="title_ongoing">Ongoing</string>
+    <string name="scheduled_title">Scheduled</string>
+    <string name="history_title">History</string>
+    <string name="vehicle_model_plate_title"><![CDATA[Model & Plate No]]></string>
     <!-- End of Support-->
 
 </resources>

@@ -209,15 +209,7 @@
         app:layout_constraintTop_toBottomOf="@id/endDateAndTimeTitle"
         tools:text="26/11/2019, 15:21" />
 
-    <TextView
-        android:id="@+id/estTimeLeftText"
-        style="@style/AndroidSmallLightLowprio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/primary_color"
-        app:layout_constraintStart_toStartOf="@id/actualDurationText"
-        app:layout_constraintTop_toTopOf="@id/endDateAndTimeText"
-        tools:text="2 h 15 min left" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnKey"
@@ -233,7 +225,7 @@
         app:layout_constraintTop_toTopOf="@+id/btnEndTrip"
         app:rippleColor="@color/secondary_dark" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnEndTrip"
         style="@style/AndroidButtonLabelWhite"
         android:layout_width="0dp"
@@ -241,7 +233,7 @@
         android:layout_marginStart="@dimen/default_margin_horizontal"
         android:layout_marginTop="@dimen/confirm_button_margin_vertical"
         android:layout_marginEnd="@dimen/default_margin_horizontal"
-        android:background="@drawable/state_primary_btn"
+        android:backgroundTint="@color/color_states_material_primary_button"
         android:text="@string/end_now_txt"
         android:textAllCaps="false"
         app:layout_constraintEnd_toStartOf="@+id/btnKey"

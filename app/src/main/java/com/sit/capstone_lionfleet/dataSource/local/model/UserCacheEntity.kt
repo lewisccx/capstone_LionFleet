@@ -23,6 +23,8 @@ data class UserCacheEntity(
     val firstName: String,
     @ColumnInfo(name = "isActivated")
     val isActivated: Boolean,
+    @ColumnInfo(name = "licenseActivated")
+    val licenseActivated: Boolean,
     @ColumnInfo(name = "lastName")
     val lastName: String,
     @ColumnInfo(name = "countryCode")

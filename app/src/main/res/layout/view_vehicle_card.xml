@@ -109,7 +109,8 @@
         app:layout_constraintBottom_toTopOf="@+id/btnBook"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/isAvailableFlag">
+        app:layout_constraintTop_toBottomOf="@+id/isAvailableFlag"
+        >
 
         <ImageView
             android:id="@+id/iconEngineType"

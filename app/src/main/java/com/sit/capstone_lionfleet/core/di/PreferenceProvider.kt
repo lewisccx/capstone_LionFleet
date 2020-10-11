@@ -28,6 +28,15 @@ constructor(@ApplicationContext private val context: Context) {
         return preference.getString(AUTH_KEY, null)
     }
 
+    fun saveAsPref(key: String, value: String){
+        preference.edit().putString(
+            key,value
+        ).apply()
+    }
+    fun geValueFromPref(key: String):String?{
+        return preference.getString(key, null)
+    }
+
     fun savePasswordResetToken(token: String?) {
         preference.edit().putString(
             PWD_RESET_KEY,

@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/subTitle"
+        style="@style/AndroidItalicMediumLightLowprio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/default_margin_horizontal"
+        android:layout_marginTop="@dimen/subtitle_margin_vertical"
+        android:text="@string/booking_info_txt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+         />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/startIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_check_circle"
+        app:layout_constraintEnd_toEndOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/startDateAndTimeTitle" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/endIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:backgroundTint="@color/primary_color"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_round_neutral"
+        android:tint="@color/primary_color"
+        app:layout_constraintBottom_toBottomOf="@+id/endDateAndTimeTitle"
+        app:layout_constraintEnd_toEndOf="@+id/startIcon"
+        app:layout_constraintStart_toStartOf="@id/startIcon"
+        app:layout_constraintTop_toTopOf="@id/endDateAndTimeTitle" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/verticalLine"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="@color/primary_color"
+        app:layout_constraintBottom_toTopOf="@id/endIcon"
+        app:layout_constraintEnd_toEndOf="@+id/startIcon"
+        app:layout_constraintStart_toStartOf="@id/startIcon"
+        app:layout_constraintTop_toBottomOf="@id/startIcon" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/startDateAndTimeTitle"
+        style="@style/AndroidInputLabelLightLowprio"
+        tools:text="Start date and time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/default_margin_horizontal"
+        android:text="@string/confirm_booking_start_date_time"
+        app:layout_constraintStart_toEndOf="@id/startIcon"
+        app:layout_constraintTop_toBottomOf="@+id/subTitle" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/durationIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/icon_margin"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_time"
+        app:layout_constraintBottom_toBottomOf="@id/durationTitle"
+        app:layout_constraintStart_toStartOf="@id/startDateAndTimeText"
+        app:layout_constraintTop_toTopOf="@id/actualDurationTitle" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/startDateAndTimeText"
+        style="@style/AndroidSmallBlack"
+        tools:text="26/11/2019, 12:00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/label_margin_vertical"
+        app:layout_constraintStart_toStartOf="@id/startDateAndTimeTitle"
+        app:layout_constraintTop_toBottomOf="@id/startDateAndTimeTitle" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/actualDurationTitle"
+        style="@style/AndroidInputLabelLightLowprio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/label_margin_horizontal"
+        android:layout_marginTop="@dimen/default_margin_horizontal"
+        android:text="@string/actual_duration_txt"
+        app:layout_constraintStart_toEndOf="@id/durationIcon"
+        app:layout_constraintTop_toBottomOf="@+id/startDateAndTimeText" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/actualDurationText"
+        style="@style/AndroidSmallLightLowprio"
+        tools:text="3 h 15 min"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/icon_margin"
+        android:layout_marginTop="@dimen/default_margin_horizontal"
+        android:textColor="@color/primary_color"
+        app:layout_constraintStart_toEndOf="@+id/actualDurationTitle"
+        app:layout_constraintTop_toBottomOf="@+id/startDateAndTimeText" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/durationTitle"
+        style="@style/AndroidInputLabelLightLowprio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/label_margin_horizontal"
+        android:layout_marginTop="@dimen/label_margin_vertical"
+        android:text="@string/duration_txt"
+        app:layout_constraintStart_toEndOf="@id/durationIcon"
+        app:layout_constraintTop_toBottomOf="@id/actualDurationTitle" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/durationText"
+        style="@style/AndroidSmallBlack"
+        tools:text="2 h 15 min"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/actualDurationText"
+        app:layout_constraintTop_toTopOf="@id/durationTitle" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="56dp" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/distanceIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_range"
+        app:layout_constraintBottom_toBottomOf="@id/estDistanceTitle"
+        app:layout_constraintStart_toStartOf="@id/durationIcon"
+        app:layout_constraintTop_toTopOf="@id/estDistanceTitle" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/estDistanceTitle"
+        style="@style/AndroidInputLabelLightLowprio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/label_margin_horizontal"
+        android:layout_marginTop="@dimen/label_margin_vertical"
+        android:text="@string/est_dist_txt"
+        app:layout_constraintStart_toEndOf="@id/distanceIcon"
+        app:layout_constraintTop_toBottomOf="@+id/durationTitle" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/estDistanceText"
+        style="@style/AndroidSmallBlack"
+        tools:text="20 km"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/estDistanceTitle"
+        app:layout_constraintStart_toStartOf="@id/actualDurationText"
+        app:layout_constraintTop_toTopOf="@id/estDistanceTitle" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/endDateAndTimeTitle"
+        style="@style/AndroidInputLabelLightLowprio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin_horizontal"
+        android:text="@string/confirm_booking_end_date_time"
+        app:layout_constraintStart_toStartOf="@id/startDateAndTimeTitle"
+        app:layout_constraintTop_toBottomOf="@id/estDistanceTitle" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/endDateAndTimeText"
+        style="@style/AndroidSmallBlack"
+        tools:text="26/11/2019, 15:21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/label_margin_vertical"
+        app:layout_constraintStart_toStartOf="@id/endDateAndTimeTitle"
+        app:layout_constraintTop_toBottomOf="@id/endDateAndTimeTitle" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/ActualEndDateAndTimeTitle"
+        style="@style/AndroidInputLabelLightLowprio"
+        tools:text="Actual End date and time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="65dp"
+        android:layout_marginBottom="@dimen/small_margin"
+        android:textColor="@color/primary_color"
+
+        app:layout_constraintBottom_toTopOf="@+id/estTimeLeftText"
+        app:layout_constraintStart_toEndOf="@id/endDateAndTimeTitle"
+        app:layout_constraintTop_toBottomOf="@+id/estDistanceText"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/estTimeLeftText"
+        style="@style/AndroidSmallLightLowprio"
+        tools:text="26/11/2019, 15:22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary_color"
+        app:layout_constraintStart_toStartOf="@id/actualDurationText"
+        app:layout_constraintTop_toTopOf="@id/endDateAndTimeText" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnKey"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_marginEnd="@dimen/default_margin_horizontal"
+        android:backgroundTint="@color/secondary_color"
+        android:src="@drawable/ic_key_icon"
+        app:tint="@color/white"
+        app:borderWidth="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnEndTrip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnEndTrip"
+        app:rippleColor="@color/secondary_dark" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnEndTrip"
+        style="@style/AndroidButtonLabelWhite"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/trip_option_button_size"
+        android:layout_marginStart="@dimen/default_margin_horizontal"
+        android:layout_marginTop="@dimen/confirm_button_margin_vertical"
+        android:layout_marginEnd="@dimen/default_margin_horizontal"
+        android:backgroundTint="@color/color_states_material_primary_button"
+        android:text="@string/end_now_txt"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toStartOf="@+id/btnKey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/endDateAndTimeText" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_bg_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEndTrip">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/carInfoTitle"
+            style="@style/AndroidItalicMediumLightLowprio"
+            tools:text="Car information"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margin_horizontal"
+            android:text="@string/bookings_car_information"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin_horizontal"
+            android:layout_marginTop="@dimen/vehicle_card_margin_vertical"
+            android:layout_marginEnd="@dimen/default_margin_horizontal"
+            android:layout_marginBottom="@dimen/vehicle_card_margin_vertical"
+            android:orientation="vertical"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/carInfoTitle">
+
+            <include layout="@layout/view_vehicle_card" />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

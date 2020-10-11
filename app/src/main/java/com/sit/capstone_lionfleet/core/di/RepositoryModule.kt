@@ -1,9 +1,14 @@
 package com.sit.capstone_lionfleet.core.di
 
+import com.sit.capstone_lionfleet.business.bookings.BookingsRepository
+import com.sit.capstone_lionfleet.business.bookings.network.BookingApi
+import com.sit.capstone_lionfleet.business.bookings.network.BookingEntityMapper
 import com.sit.capstone_lionfleet.business.profile.ProfileRepository
 import com.sit.capstone_lionfleet.business.profile.network.ProfileApi
 import com.sit.capstone_lionfleet.business.profile.network.ProfileEntityMapper
+import com.sit.capstone_lionfleet.dataSource.local.dao.BookingDao
 import com.sit.capstone_lionfleet.dataSource.local.dao.UserDao
+import com.sit.capstone_lionfleet.dataSource.local.model.BookingCacheMapper
 import com.sit.capstone_lionfleet.dataSource.local.model.UserCacheMapper
 import com.sit.capstone_lionfleet.login.network.LoginApi
 import com.sit.capstone_lionfleet.login.repository.LoginRepository
@@ -32,9 +37,34 @@ object RepositoryModule {
         profileApi: ProfileApi,
         userDao: UserDao,
         profileEntityMapper: ProfileEntityMapper,
-        userCacheMapper: UserCacheMapper
+        userCacheMapper: UserCacheMapper,
+        preferenceProvider: PreferenceProvider
 
     ): ProfileRepository {
-        return ProfileRepository(profileApi, userDao, profileEntityMapper, userCacheMapper)
+        return ProfileRepository(
+            profileApi,
+            userDao,
+            profileEntityMapper,
+            userCacheMapper,
+            preferenceProvider
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideBookingRepository(
+        bookingApi: BookingApi,
+        bookingDao: BookingDao,
+        bookingEntityMapper: BookingEntityMapper,
+        bookingCacheMapper: BookingCacheMapper,
+        preferenceProvider: PreferenceProvider
+    ): BookingsRepository {
+        return BookingsRepository(
+            bookingApi,
+            bookingDao,
+            bookingEntityMapper,
+            bookingCacheMapper,
+            preferenceProvider
+        )
     }
 }

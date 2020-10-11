@@ -18,4 +18,10 @@
         android:id="@+id/navigation_map"
         android:name="com.sit.capstone_lionfleet.business.map.MapFragment"
         android:label="MapFragment" />
+    <fragment
+        android:id="@+id/navigation_ongoing"
+        android:name="com.sit.capstone_lionfleet.business.bookings.ongoing.OngoingFragment"
+        android:label="ongoing_fragment"
+        tools:layout="@layout/ongoing_fragment" />
+
 </navigation>

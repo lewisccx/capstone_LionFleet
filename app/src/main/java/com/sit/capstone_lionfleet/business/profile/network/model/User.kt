@@ -11,6 +11,6 @@ data class User(
         val isActivated: Boolean,
         val lastName: String,
         val countryCode: String,
-        val phoneNumber: String
-
+        val phoneNumber: String,
+        val licenseActivated: Boolean
 )

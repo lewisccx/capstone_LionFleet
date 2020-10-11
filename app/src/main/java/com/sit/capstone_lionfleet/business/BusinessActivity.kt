@@ -30,23 +30,23 @@ class BusinessActivity : AppCompatActivity() {
         navController = findNavController(R.id.navHostFragment)
         navView = findViewById(R.id.navView)
         navView.setupWithNavController(navController)
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.navigation_map -> {
-                    changeStatusBarColor()
-                }
-                R.id.navigation_profile -> {
-                    changeStatusBarColor(R.color.primary_color)
-                }
-                else -> changeStatusBarColor()
-            }
-        }
+//        navController.addOnDestinationChangedListener { _, destination, _ ->
+//            when (destination.id) {
+//                R.id.navigation_map -> {
+//                    changeStatusBarColor()
+//                }
+//                R.id.navigation_profile -> {
+//                   // changeStatusBarColor(R.color.primary_color)
+//                }
+//                else -> changeStatusBarColor()
+//            }
+//        }
     }
 
-    private fun changeStatusBarColor(@ColorRes colorRes: Int = R.color.white) {
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = getColor(colorRes)
-    }
+//    private fun changeStatusBarColor(@ColorRes colorRes: Int = R.color.white) {
+//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+//        window.statusBarColor = getColor(colorRes)
+//    }
 
     override fun onBackPressed() {
         when (navController.currentDestination?.id ?: super.onBackPressed()) {

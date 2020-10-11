@@ -63,11 +63,11 @@
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         tools:text="100km" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnStartNow"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@drawable/state_primary_btn"
+        app:backgroundTint="@color/color_states_material_primary_button"
         android:text="@string/bookings_start_now"
         android:textAllCaps="false"
         android:textAppearance="@style/AndroidButtonLabelWhite"
