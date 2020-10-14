@@ -1,6 +1,5 @@
 package com.sit.capstone_lionfleet.business.bookings.scheduled
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,24 +9,25 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.viewpager.widget.ViewPager
-import com.mapbox.mapboxsdk.style.expressions.Expression.`object`
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.button.MaterialButton
 import com.sit.capstone_lionfleet.R
 import com.sit.capstone_lionfleet.base.response.Resource
 import com.sit.capstone_lionfleet.business.bookings.BookingsStateEvent
 import com.sit.capstone_lionfleet.business.bookings.BookingsViewModel
+import com.sit.capstone_lionfleet.business.bookings.history.BookingHistoryAdapter
+import com.sit.capstone_lionfleet.business.bookings.network.model.Booking
 import com.sit.capstone_lionfleet.core.extension.hide
 import com.sit.capstone_lionfleet.core.extension.show
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_bookings.*
-import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.history_fragment.*
 import kotlinx.android.synthetic.main.scheduled_fragment.*
 
 @AndroidEntryPoint
-class ScheduledFragment : Fragment(R.layout.scheduled_fragment) {
+class ScheduledFragment : Fragment(R.layout.scheduled_fragment), ItemClickListener {
     val TAG = "ScheduledFragment"
     private val viewModel: BookingsViewModel by viewModels()
-
+    private lateinit var bookingScheduledAdapter : BookingScheduledAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,6 +39,15 @@ class ScheduledFragment : Fragment(R.layout.scheduled_fragment) {
         super.onViewCreated(view, savedInstanceState)
         Log.d(TAG, "onViewCreated")
         observeViewModel()
+        setUpRecyclerView()
+    }
+
+    private fun setUpRecyclerView() {
+        bookingScheduledAdapter = BookingScheduledAdapter(itemClickListener = this)
+        rvBookings.apply {
+            adapter = bookingScheduledAdapter
+            layoutManager = LinearLayoutManager(activity)
+        }
     }
 
     override fun onResume() {
@@ -56,11 +65,21 @@ class ScheduledFragment : Fragment(R.layout.scheduled_fragment) {
             when (dataState) {
                 is Resource.Success -> {
                     scheduledProgressBar.hide()
-                    Toast.makeText(requireContext(), dataState.value.toString(), Toast.LENGTH_SHORT)
-                        .show()
+                    if (dataState.value.isEmpty()) {
+                        Toast.makeText(
+                            requireContext(),
+                            resources.getString(R.string.empty_reservedBooking_list),
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }else{
+                        dataState.value.let {
+                            bookingScheduledAdapter.differ.submitList(it)
+                        }
+                    }
                 }
                 is Resource.Failure -> {
-                     scheduledProgressBar.hide()
+                    scheduledProgressBar.hide()
                     displayError()
                 }
                 is Resource.Loading -> {
@@ -76,8 +95,24 @@ class ScheduledFragment : Fragment(R.layout.scheduled_fragment) {
             resources.getString(R.string.something_went_wrong_error),
             Toast.LENGTH_SHORT
         ).show()
-
     }
 
-
+    override fun onItemClicked(button: MaterialButton,booking: Booking) {
+        when(button.id){
+            R.id.btnStartNow ->{
+                Toast.makeText(
+                    requireContext(),
+                    booking.reservedDate,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            R.id.btnCancel -> {
+                Toast.makeText(
+                    requireContext(),
+                    booking.id,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
 }

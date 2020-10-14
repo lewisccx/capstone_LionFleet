@@ -25,7 +25,9 @@ constructor() : EntityMapper<BookingItem, Booking> {
             imageUrl = entity.vehicle.imageUrl,
             stationName = entity.station.name,
             createdAt = entity.createdAt,
-            updatedAt = entity.updatedAt
+            updatedAt = entity.updatedAt,
+            actualCost = entity.actualCost,
+            expectedCost = entity.expectedCost
         )
     }
 
@@ -38,15 +40,18 @@ constructor() : EntityMapper<BookingItem, Booking> {
             reservedDate = domainModel.reservedDate,
             status = domainModel.status,
             vehicle = Vehicle(
-                domainModel.availability,
+                domainModel.plate,
+                domainModel.model,
                 domainModel.brand,
                 domainModel.imageUrl,
-                domainModel.model,
-                domainModel.plate
+                domainModel.availability
+
             ),
             station = Station(domainModel.stationName),
             createdAt = domainModel.createdAt,
-            updatedAt = domainModel.updatedAt
+            updatedAt = domainModel.updatedAt,
+            actualCost = domainModel.actualCost,
+            expectedCost = domainModel.expectedCost
         )
     }
 

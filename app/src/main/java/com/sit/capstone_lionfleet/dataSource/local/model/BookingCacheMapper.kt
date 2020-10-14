@@ -1,6 +1,8 @@
 package com.sit.capstone_lionfleet.dataSource.local.model
 
 import com.sit.capstone_lionfleet.business.bookings.network.model.Booking
+import com.sit.capstone_lionfleet.utils.DateUtils.Companion.ObjectDateTimeFormatter
+import com.sit.capstone_lionfleet.utils.DateUtils.Companion.mongoDateTimeFormatter
 import com.sit.capstone_lionfleet.utils.EntityMapper
 import javax.inject.Inject
 
@@ -10,10 +12,10 @@ constructor() : EntityMapper<BookingCacheEntity, Booking> {
     override fun mapFromEntity(entity: BookingCacheEntity): Booking {
         return Booking(
             id = entity.id,
-            checkedInTs = entity.checkedInTs,
-            checkedOutTs = entity.checkedOutTs,
+            checkedInTs = ObjectDateTimeFormatter.format(entity.checkedInTs),
+            checkedOutTs = ObjectDateTimeFormatter.format(entity.checkedOutTs),
             distance = entity.distance,
-            reservedDate = entity.reservedDate,
+            reservedDate = ObjectDateTimeFormatter.format(entity.reservedDate),
             status = entity.status,
             brand = entity.brand,
             model = entity.model,
@@ -21,18 +23,20 @@ constructor() : EntityMapper<BookingCacheEntity, Booking> {
             availability = entity.availability,
             imageUrl = entity.imageUrl,
             stationName = entity.stationName,
-            createdAt = entity.createdAt,
-            updatedAt = entity.updatedAt
+            createdAt = ObjectDateTimeFormatter.format(entity.createdAt),
+            updatedAt = ObjectDateTimeFormatter.format(entity.updatedAt),
+            actualCost = entity.actualCost,
+            expectedCost = entity.expectedCost
         )
     }
 
     fun mapToEntity(domainModel: Booking): BookingCacheEntity {
         return BookingCacheEntity(
             id = domainModel.id,
-            checkedInTs = domainModel.checkedInTs,
-            checkedOutTs = domainModel.checkedOutTs,
+            checkedInTs = mongoDateTimeFormatter.parse(domainModel.checkedInTs),
+            checkedOutTs = mongoDateTimeFormatter.parse(domainModel.checkedOutTs),
             distance = domainModel.distance,
-            reservedDate = domainModel.reservedDate,
+            reservedDate = mongoDateTimeFormatter.parse(domainModel.reservedDate),
             status = domainModel.status,
             brand = domainModel.brand,
             model = domainModel.model,
@@ -40,8 +44,10 @@ constructor() : EntityMapper<BookingCacheEntity, Booking> {
             availability = domainModel.availability,
             imageUrl = domainModel.imageUrl,
             stationName = domainModel.stationName,
-            createdAt = domainModel.createdAt,
-            updatedAt = domainModel.updatedAt
+            createdAt = mongoDateTimeFormatter.parse(domainModel.createdAt),
+            updatedAt = mongoDateTimeFormatter.parse(domainModel.updatedAt),
+            actualCost = domainModel.actualCost,
+            expectedCost = domainModel.expectedCost
         )
     }
 

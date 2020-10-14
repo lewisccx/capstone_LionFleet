@@ -4,6 +4,9 @@ import android.content.Context
 import android.os.Handler
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
+import com.sit.capstone_lionfleet.R
 
 private const val DELAY_IN_MILLIS = 100L
 
@@ -33,6 +36,8 @@ fun View.showIf(condition: Boolean) {
         hide()
     }
 }
+
+
 
 fun View.showKeyboard() {
     val inputMethodManager = this.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

@@ -1,9 +1,8 @@
 package com.sit.capstone_lionfleet.business.bookings.network.model
 
 import com.google.gson.annotations.SerializedName
-import com.sit.capstone_lionfleet.business.bookings.network.response.Vehicle
 
-data class Booking (
+data class Booking(
     val checkedInTs: String,
     val checkedOutTs: String,
     val createdAt: String,
@@ -18,5 +17,7 @@ data class Booking (
     val imageUrl: String,
     val model: String,
     val plate: String,
-    val stationName: String
+    val stationName: String,
+    val actualCost: Double,
+    val expectedCost: Double
 )

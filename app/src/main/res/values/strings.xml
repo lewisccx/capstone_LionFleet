@@ -7,6 +7,10 @@
     <!--    mapbox-->
     <string name="mapbox_access_token">pk.eyJ1IjoibGV3aXNjY3giLCJhIjoiY2s3ZzI1YnI2MDAxNjNlb2IxZHk0bzQ4cyJ9.KGCWmEWvYHnBfKec11rf3g</string>
     <!--    End of mapbox-->
+<!--    Alan-->
+    <string name="alan_access_token">cb13a0a22f6c3251f93f97723d75f9a82e956eca572e1d8b807a3e2338fdd0dc/stage</string>
+
+    <!--    End of Alan-->
     <!-- Sign up -->
     <string name="sign_up_header">Sign up</string>
     <string name="sign_up_hint_email">EMAIL</string>
@@ -169,6 +173,10 @@
     <string name="welcome_message">Welcome to Cityfleet.</string>
     <!-- End of splash screen -->
 
+<!--    MapBox-->
+    <string name="mapbox_error_no_connectivity">You might have issues viewing the map because your device isn\'t connected to the internet.</string>
+
+    <!--    End of MapBox-->
     <!-- Bookings Overview -->
     <string name="bookings_upcoming_header_pattern">Upcoming (%1$d)</string>
     <string name="bookings_time_frame_pattern">%1$s - %2$s</string>
@@ -348,6 +356,11 @@
     <string name="scheduled_title">Scheduled</string>
     <string name="history_title">History</string>
     <string name="vehicle_model_plate_title"><![CDATA[Model & Plate No]]></string>
+    <string name="empty_checkdIn_list">Your have not checked in any vehicle</string>
+    <string name="cancel_booking">Cancel</string>
+    <string name="empty_reservedBooking_list">You have not reserved any vehicle</string>
+    <string name="distance">mi</string>
+    <string name="minutes">mins</string>
     <!-- End of Support-->
 
 </resources>

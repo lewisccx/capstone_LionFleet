@@ -4,42 +4,59 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container"
+
+    <com.alan.alansdk.button.AlanButton
+
+        android:id="@+id/alan_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="?actionBarSize" />
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <com.alan.alansdk.button.AlanButton
-            app:layout_constraintBottom_toTopOf="@id/navView"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/alan_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/navView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginStart="0dp"
-            android:layout_marginEnd="0dp"
+            android:layout_marginEnd="@dimen/default_margin"
             android:background="?android:attr/windowBackground"
+            android:backgroundTint="@android:color/transparent"
             app:itemIconTint="@drawable/bottom_navigation_item_colors"
             app:itemTextColor="@drawable/bottom_navigation_item_colors"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_dodgeInsetEdges="bottom"
             app:menu="@menu/bottom_nav_menu" />
 
-        <fragment
-            android:id="@+id/navHostFragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:defaultNavHost="true"
-            app:layout_constraintBottom_toTopOf="@id/navView"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/mobile_navigation" />
+    </com.google.android.material.bottomappbar.BottomAppBar>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <fragment
+        android:id="@+id/navHostFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:layout_marginBottom="?actionBarSize"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/mobile_navigation" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_navigate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabCradleMargin="@dimen/default_margin"
+        app:fabCradleRoundedCornerRadius="@dimen/default_margin"
+        app:fabCradleVerticalOffset="@dimen/small_margin"
+        app:layout_anchor="@id/bottomAppBar"
+        app:srcCompat="@drawable/ic_navigate"
+        app:tint="@null" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

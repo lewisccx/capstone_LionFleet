@@ -5,17 +5,13 @@ import com.sit.capstone_lionfleet.base.response.Resource
 import com.sit.capstone_lionfleet.business.bookings.network.BookingApi
 import com.sit.capstone_lionfleet.business.bookings.network.BookingEntityMapper
 import com.sit.capstone_lionfleet.business.bookings.network.model.Booking
-import com.sit.capstone_lionfleet.business.bookings.network.model.BookingStatus
 import com.sit.capstone_lionfleet.core.di.PreferenceProvider
 import com.sit.capstone_lionfleet.dataSource.local.dao.BookingDao
 import com.sit.capstone_lionfleet.dataSource.local.model.BookingCacheMapper
-import com.sit.capstone_lionfleet.utils.Constants
-import com.sit.capstone_lionfleet.utils.isFetchNeeded
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import org.json.JSONObject
 import retrofit2.HttpException
-import java.time.LocalDateTime
 
 class BookingsRepository
 constructor(
@@ -28,23 +24,15 @@ constructor(
     suspend fun getBookingByStatus(bookingStatus: String): Flow<Resource<List<Booking>>> = flow {
         emit(Resource.Loading)
         try {
-            val timeStamp = preferenceProvider.geValueFromPref(Constants.BOOKING_API_CALL_TIMESTAMP)
-            if (timeStamp == null || isFetchNeeded(
-                    LocalDateTime.parse(timeStamp),
-                    Constants.BOOKING_API_CALL_LIMIT
-                )
-            ) {
-                val bookingsResponse = api.getUserBookingsByStatus(bookingStatus)
-                val bookings = bookingEntityMapper.mapFromEntityResponse(bookingsResponse.body()!!.bookings)
-                for(booking in bookings){
-                    bookingDao.insert(bookingCacheMapper.mapToEntity(booking))
-                }
-                preferenceProvider.saveAsPref(
-                    Constants.BOOKING_API_CALL_TIMESTAMP,
-                    LocalDateTime.now().toString()
-                )
+
+            val bookingsResponse = api.getUserBookingsByStatus(bookingStatus)
+            val bookings =
+                bookingEntityMapper.mapFromEntityResponse(bookingsResponse.body()!!.bookings)
+            for (booking in bookings) {
+                bookingDao.insert(bookingCacheMapper.mapToEntity(booking))
             }
-            val cachedBookings  = bookingDao.getBookingsByStatus(bookingStatus)
+
+            val cachedBookings = bookingDao.getBookingsByStatus(bookingStatus)
             emit(Resource.Success(bookingCacheMapper.mapFromEntityList(cachedBookings)))
         } catch (throwable: Throwable) {
             when (throwable) {

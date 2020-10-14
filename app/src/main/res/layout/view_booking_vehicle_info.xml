@@ -62,10 +62,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         tools:text="100km" />
-
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCancel"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        app:backgroundTint="@color/color_states_material_cancel_button"
+        android:text="@string/cancel_booking"
+        android:textAllCaps="false"
+        android:textAppearance="@style/AndroidButtonLabelWhite"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnStartNow"/>
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnStartNow"
-        android:layout_width="match_parent"
+        android:layout_width="140dp"
         android:layout_height="50dp"
         app:backgroundTint="@color/color_states_material_primary_button"
         android:text="@string/bookings_start_now"
@@ -74,7 +85,7 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/btnCancel" />
 
     <ImageView
         android:id="@+id/imgBatt"

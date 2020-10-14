@@ -12,7 +12,7 @@ import com.sit.capstone_lionfleet.dataSource.local.model.UserCacheEntity
     version = 3,
     exportSchema = false
 )
-
+@TypeConverters(LocalDateTimeConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun getUserDao(): UserDao

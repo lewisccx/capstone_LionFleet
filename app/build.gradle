@@ -116,7 +116,7 @@ dependencies {
     implementation group: 'com.mapbox.mapboxsdk', name: 'mapbox-sdk-turf', version: '5.6.0'
 
     def mapbox_navigation_ver = "1.0.0"
-    implementation "com.mapbox.navigation:ui:$mapbox_navigation_ver"
+    implementation ("com.mapbox.navigation:ui:$mapbox_navigation_ver")
 
     def mapbox_places_plugin_ver = "0.12.0"
     implementation "com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:${mapbox_places_plugin_ver}"
@@ -131,4 +131,6 @@ dependencies {
 
     def alan_ver = "4.7.15"
     implementation "app.alan:sdk:$alan_ver"
+
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.1.0")
 }

@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.sit.capstone_lionfleet.R
+import com.sit.capstone_lionfleet.business.bookings.BookingsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class OngoingFragment : Fragment(R.layout.ongoing_fragment) {
 
-    private val viewModel: OngoingViewModel by viewModels();
+    private val viewModel: BookingsViewModel by viewModels();
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
