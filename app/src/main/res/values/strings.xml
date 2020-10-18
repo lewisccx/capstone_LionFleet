@@ -361,6 +361,15 @@
     <string name="empty_reservedBooking_list">You have not reserved any vehicle</string>
     <string name="distance">mi</string>
     <string name="minutes">mins</string>
+    <string name="engineDisel">Disel</string>
+    <string name="engineElectric">Electric</string>
+    <string name="no_route_found">We are sorry. No routes found at the moment.</string>
+    <string name="fail_to_retrieve_route_error">"Failed to retrieve the navigation route "</string>
+    <string name="walking_miles">%1$s km</string>
+    <string name="walking_minutes">%1$s mins</string>
+    <string name="travel_time_unknown">Travel Time Unknown</string>
+
+    <string name="mapbox_dataset_error">Mapbox dataset key and value is refreshing in progress</string>
     <!-- End of Support-->
 
 </resources>

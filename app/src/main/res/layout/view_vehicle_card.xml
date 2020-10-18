@@ -7,9 +7,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingStart="10dp"
-    android:paddingTop="20dp"
     android:paddingEnd="10dp"
-    android:paddingBottom="16dp">
+    android:paddingBottom="@dimen/smaller_margin">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -61,42 +60,41 @@
             style="@style/AndroidInputLabelLightLowprio"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/stationDistance"
             app:layout_constraintEnd_toEndOf="@+id/vehicleModelBrand"
             app:layout_constraintStart_toStartOf="@id/vehicleModelBrand"
             app:layout_constraintTop_toBottomOf="@+id/vehicleModelBrand"
             tools:text="Techbase Station" />
 
-        <TextView
-            android:id="@+id/stationDistance"
-            style="@style/AndroidInputLabelLightLowprio"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/isAvailableFlag"
-            app:layout_constraintEnd_toEndOf="@+id/stationName"
-            app:layout_constraintStart_toStartOf="@id/stationName"
-            app:layout_constraintTop_toBottomOf="@+id/stationName" />
+
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="bottom"
-            app:constraint_referenced_ids="stationDistance,vehicleModelBrand" />
+            app:constraint_referenced_ids="isAvailableFlag" />
 
-        <TextView
+        <ImageView
             android:id="@+id/isAvailableFlag"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="36dp"
             android:text="@string/title_rented"
             android:textColor="@color/color_accent"
-            android:textSize="18sp"
-            android:textStyle="italic"
+            android:adjustViewBounds="true"
+            android:paddingStart="-12dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="-12dp"
+            android:paddingEnd="-12dp"
+            app:layout_constraintEnd_toEndOf="@id/stationName"
+            android:layout_marginTop="@dimen/smaller_margin"
+            android:scaleType="fitCenter"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/vehicleModelBrand"
-            app:layout_constraintStart_toStartOf="@id/vehicleModelBrand"
-            app:layout_constraintTop_toBottomOf="@+id/barrier" />
+            android:src="@drawable/ic_vehicle_available"
+            app:layout_constraintTop_toBottomOf="@id/stationName"
+            app:layout_constraintStart_toStartOf="@+id/stationName"
+
+           />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -146,33 +144,33 @@
             android:layout_marginEnd="24dp"
             android:background="@color/light_low_priority_text"
             app:layout_constraintBottom_toBottomOf="@id/textEngineType"
-            app:layout_constraintEnd_toStartOf="@id/iconDistance"
+            app:layout_constraintEnd_toStartOf="@id/iconPerDay"
             app:layout_constraintStart_toEndOf="@id/iconEngineType"
             app:layout_constraintTop_toTopOf="@id/iconEngineType" />
 
         <ImageView
-            android:id="@+id/iconDistance"
+            android:id="@+id/iconPerDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@null"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/textDistance"
+            app:layout_constraintEnd_toEndOf="@id/textPricePerDay"
             app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toStartOf="@id/textDistance"
+            app:layout_constraintStart_toStartOf="@id/textPricePerDay"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_range" />
+            app:srcCompat="@drawable/ic_day" />
 
         <TextView
-            android:id="@+id/textDistance"
+            android:id="@+id/textPricePerDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/iconDistance"
+            app:layout_constraintEnd_toEndOf="@+id/iconPerDay"
             app:layout_constraintEnd_toStartOf="@id/divider2"
             app:layout_constraintStart_toEndOf="@id/divider1"
-            tools:text="495 KM " />
+            tools:text="200 per day " />
 
         <View
             android:id="@+id/divider2"
@@ -181,10 +179,10 @@
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             android:background="@color/light_low_priority_text"
-            app:layout_constraintBottom_toBottomOf="@id/textDistance"
+            app:layout_constraintBottom_toBottomOf="@id/textPricePerDay"
             app:layout_constraintEnd_toStartOf="@id/iconPrice"
-            app:layout_constraintStart_toEndOf="@id/iconDistance"
-            app:layout_constraintTop_toTopOf="@id/iconDistance" />
+            app:layout_constraintStart_toEndOf="@id/iconPerDay"
+            app:layout_constraintTop_toTopOf="@id/iconPerDay" />
 
         <ImageView
             android:id="@+id/iconPrice"
@@ -192,13 +190,13 @@
             android:layout_height="wrap_content"
             android:contentDescription="@null"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/textPrice"
-            app:layout_constraintStart_toStartOf="@id/textPrice"
+            app:layout_constraintEnd_toEndOf="@id/textPricePerKm"
+            app:layout_constraintStart_toStartOf="@id/textPricePerKm"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_payment" />
 
         <TextView
-            android:id="@+id/textPrice"
+            android:id="@+id/textPricePerKm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -213,7 +211,7 @@
             android:id="@+id/availableVehiclesGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="iconDistance,textDistance,divider2,iconEngineType,textEngineType,divider1" />
+            app:constraint_referenced_ids="iconPerDay,textPricePerDay,divider2,iconEngineType,textEngineType,divider1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

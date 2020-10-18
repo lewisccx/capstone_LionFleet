@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.sit.capstone_lionfleet.BuildConfig
 import com.sit.capstone_lionfleet.business.bookings.network.BookingApi
+import com.sit.capstone_lionfleet.business.map.network.StationApi
 import com.sit.capstone_lionfleet.business.profile.network.ProfileApi
 import com.sit.capstone_lionfleet.login.network.LoginApi
 import dagger.Module
@@ -80,5 +81,13 @@ object RetrofitModule {
         return retrofit.client(
             okHttpClient
         ).build().create(BookingApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideStationApi(retrofit: Retrofit.Builder, okHttpClient: OkHttpClient): StationApi {
+        return retrofit.client(
+            okHttpClient
+        ).build().create(StationApi::class.java)
     }
 }

@@ -63,16 +63,18 @@
             mapbox:mapbox_cameraZoomMin="6"
             mapbox:mapbox_uiRotateGestures="true" />
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="?actionBarSize">
+
+
 
             <include
-                android:id="@+id/station_bottom_sheet"
-
+                android:id="@+id/station_card"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="@dimen/smaller_margin"
+                android:layout_marginRight="@dimen/smaller_margin"
+                android:layout_marginLeft="@dimen/smaller_margin"
                 layout="@layout/view_station_card" />
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </FrameLayout>

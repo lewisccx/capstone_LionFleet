@@ -7,6 +7,7 @@ import com.sit.capstone_lionfleet.business.bookings.network.model.Booking
 import com.sit.capstone_lionfleet.dataSource.local.AppDatabase
 import com.sit.capstone_lionfleet.dataSource.local.dao.BookingDao
 import com.sit.capstone_lionfleet.dataSource.local.dao.UserDao
+import com.sit.capstone_lionfleet.dataSource.local.dao.VehicleDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,6 +40,12 @@ object RoomModule {
     @Provides
     fun provideBookingDao(appDatabase: AppDatabase): BookingDao {
         return appDatabase.getBookingDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideVehicleDao(appDatabase: AppDatabase): VehicleDao {
+        return appDatabase.getVehicleDao()
     }
 
 

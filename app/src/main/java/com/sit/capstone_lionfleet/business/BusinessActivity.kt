@@ -1,6 +1,9 @@
 package com.sit.capstone_lionfleet.business
 
 import android.os.Bundle
+import android.view.ViewGroup
+import android.view.WindowManager
+import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -27,7 +30,6 @@ class BusinessActivity : AppCompatActivity() {
         setContentView(R.layout.activity_business)
         initNavView()
         initAlan()
-
     }
 
     private fun initAlan() {
@@ -57,28 +59,38 @@ class BusinessActivity : AppCompatActivity() {
         fabNavigate = findViewById(R.id.fab_navigate)
         fabNavigate.setOnClickListener {
             when (navController.currentDestination?.id) {
-                R.id.navigation_bookings, R.id.navigation_ongoing, R.id.navigation_profile -> navController.navigate(
-                    R.id.navigation_map
-                )
+                R.id.navigation_bookings, R.id.navigation_ongoing, R.id.navigation_profile -> {
+
+                    navController.navigate(
+                        R.id.navigation_map
+
+                    )
+                    val param = alanBtn.layoutParams as ViewGroup.MarginLayoutParams
+                    param.bottomMargin = 135
+                    alanBtn.layoutParams = param
+                }
             }
         }
-//        navController.addOnDestinationChangedListener { _, destination, _ ->
-//            when (destination.id) {
-//                R.id.navigation_map -> {
-//                    changeStatusBarColor()
-//                }
-//                R.id.navigation_profile -> {
-//                   // changeStatusBarColor(R.color.primary_color)
-//                }
-//                else -> changeStatusBarColor()
-//            }
-//        }
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.navigation_map -> {
+                   changeStatusBarColor()
+
+                }
+                R.id.navigation_profile, R.id.navigation_ongoing, R.id.navigation_bookings -> {
+                    val param = alanBtn.layoutParams as ViewGroup.MarginLayoutParams
+                    param.bottomMargin = 135
+                    alanBtn.layoutParams = param
+                }
+                else -> changeStatusBarColor()
+            }
+        }
     }
 
-//    private fun changeStatusBarColor(@ColorRes colorRes: Int = R.color.white) {
-//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-//        window.statusBarColor = getColor(colorRes)
-//    }
+    private fun changeStatusBarColor(@ColorRes colorRes: Int = R.color.white) {
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = getColor(colorRes)
+    }
 
     override fun onBackPressed() {
         when (navController.currentDestination?.id ?: super.onBackPressed()) {
