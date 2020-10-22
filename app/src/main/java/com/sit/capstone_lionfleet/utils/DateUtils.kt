@@ -12,6 +12,7 @@ class DateUtils {
         val ObjectDateTimeFormatter: SimpleDateFormat =
             SimpleDateFormat("EEE, d MMM yyyy HH:mm")
 
+        val strToLocalDate: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
         fun getFormattedDuration(duration: Long, context: Context): String {
             return context.getString(
                 R.string.bookings_duration_pattern,

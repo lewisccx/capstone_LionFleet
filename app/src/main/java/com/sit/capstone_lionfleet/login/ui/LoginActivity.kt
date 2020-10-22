@@ -2,13 +2,14 @@ package com.sit.capstone_lionfleet.login.ui
 
 import android.os.Bundle
 import android.text.Editable
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.auth0.android.jwt.JWT
 import com.continental.cityfleet.utils.textwatcher.SimpleTextWatcher
 import com.sit.capstone_lionfleet.base.response.Resource
 import com.sit.capstone_lionfleet.business.BusinessActivity
+import com.sit.capstone_lionfleet.core.di.PreferenceProvider
 import com.sit.capstone_lionfleet.core.extension.hide
 import com.sit.capstone_lionfleet.core.extension.hideKeyboard
 import com.sit.capstone_lionfleet.core.extension.show
@@ -20,12 +21,16 @@ import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
     private val TAG = "LoginActivity"
     private lateinit var binding: ActivityLoginBinding
     private val viewModel: LoginViewModel by viewModels()
+
+    @Inject
+    lateinit var preferenceProvider: PreferenceProvider
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -63,6 +68,9 @@ class LoginActivity : AppCompatActivity() {
             when (it) {
                 is Resource.Success -> {
                     binding.loginLoading.loadingView.hide()
+                    val jwt = JWT(it.value.token)
+                    val userId = jwt.subject
+                    preferenceProvider.saveLoggedInUserId(userId)
                     Toasty.success(this, it.value.message).show()
                     viewModel.saveAuthToken(it.value.token)
 

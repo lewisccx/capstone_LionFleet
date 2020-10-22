@@ -6,10 +6,16 @@ import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.ColorRes
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import com.google.android.material.internal.ViewUtils
 import com.sit.capstone_lionfleet.R
+import java.time.DayOfWeek
+import java.time.temporal.WeekFields
+import java.util.*
 
 private const val DELAY_IN_MILLIS = 100L
 
@@ -73,3 +79,18 @@ fun View.hideKeyboard() {
     inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
     this.clearFocus()
 }
+fun daysOfWeekFromLocale(): Array<DayOfWeek> {
+    val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
+    var daysOfWeek = DayOfWeek.values()
+    // Order `daysOfWeek` array so that firstDayOfWeek is at index 0.
+    // Only necessary if firstDayOfWeek != DayOfWeek.MONDAY which has ordinal 0.
+    if (firstDayOfWeek != DayOfWeek.MONDAY) {
+        val rhs = daysOfWeek.sliceArray(firstDayOfWeek.ordinal..daysOfWeek.indices.last)
+        val lhs = daysOfWeek.sliceArray(0 until firstDayOfWeek.ordinal)
+        daysOfWeek = rhs + lhs
+    }
+    return daysOfWeek
+}
+internal fun Context.getColorCompat(@ColorRes color: Int) = ContextCompat.getColor(this, color)
+
+internal fun TextView.setTextColorRes(@ColorRes color: Int) = setTextColor(context.getColorCompat(color))

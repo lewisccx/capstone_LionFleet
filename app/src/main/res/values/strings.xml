@@ -370,6 +370,7 @@
     <string name="travel_time_unknown">Travel Time Unknown</string>
 
     <string name="mapbox_dataset_error">Mapbox dataset key and value is refreshing in progress</string>
+    <string name="reserved_to_startable_too_early_error">Sorry, you only can start your booking 15 mins before the 12am of the day</string>
     <!-- End of Support-->
 
 </resources>

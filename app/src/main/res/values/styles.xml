@@ -291,4 +291,28 @@
     <style name="CustomTabStyle" parent="TextAppearance.MaterialComponents.Headline1">
         <item name="android:textSize">@dimen/booking_tab_text_size</item>
     </style>
+
+    <style name="Widget.App.Button.OutlinedButton.IconOnly" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="iconPadding">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingLeft">6dp</item>
+        <item name="android:paddingRight">6dp</item>
+        <item name="android:minWidth">30dp</item>
+        <item name="android:minHeight">30dp</item>
+        <item name="backgroundTint">@color/color_state_material_bg_btn_toggle_group</item>
+        <item name="iconTint">@color/color_state_material_icon_btn_toggle_group</item>
+        <item name="strokeColor">@color/color_state_material_stroke_btn_toggle_group</item>
+
+    </style>
+
+    <style name="ThemeButtonColorToggle" parent="AppTheme">
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorButtonNormal">@color/primary_color</item>
+        <item name="android:backgroundTint">@color/primary_color</item>
+        <item name="strokeColor">@color/light_low_priority_text</item>
+        <item name="strokeWidth">@dimen/smaller_margin</item>
+        <item name="colorOnPrimary">@color/primary_color</item>
+        <item name="colorOnPrimarySurface">@color/primary_color</item>
+    </style>
 </resources>

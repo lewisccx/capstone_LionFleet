@@ -33,6 +33,12 @@ constructor(
         }
     }
 
+    fun saveSelectedVehicleIdAsPref(vehicleId: String) = viewModelScope.launch {
+        repository.saveSelectedVehicleIdAsPref(vehicleId)
+    }
+    fun getSavedSelectedVehicleId() = repository.getSavedSelectedVehicleId()
+
+
     private suspend fun retrieveVehiclesByStationId(stationId: String) {
         repository.getVehiclesByStationId(stationId).onEach {
             _stationVehiclesDataState.value = it

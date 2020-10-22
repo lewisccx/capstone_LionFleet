@@ -5,6 +5,7 @@ import com.sit.capstone_lionfleet.base.response.Resource
 import com.sit.capstone_lionfleet.business.map.network.StationApi
 import com.sit.capstone_lionfleet.business.map.network.VehicleEntityMapper
 import com.sit.capstone_lionfleet.business.map.network.model.Vehicle
+import com.sit.capstone_lionfleet.core.di.PreferenceProvider
 import com.sit.capstone_lionfleet.dataSource.local.dao.VehicleDao
 import com.sit.capstone_lionfleet.dataSource.local.model.VehicleCacheMapper
 import kotlinx.coroutines.flow.Flow
@@ -17,7 +18,8 @@ constructor(
     private val api: StationApi,
     private val vehicleDao: VehicleDao,
     private val vehicleEntityMapper: VehicleEntityMapper,
-    private val vehicleCacheMapper: VehicleCacheMapper
+    private val vehicleCacheMapper: VehicleCacheMapper,
+    private val preferenceProvider: PreferenceProvider
 ) : BaseRepository() {
     suspend fun getVehiclesByStationId(stationId: String): Flow<Resource<List<Vehicle>>> = flow {
         emit(Resource.Loading)
@@ -49,5 +51,13 @@ constructor(
                 }
             }
         }
+    }
+
+    fun saveSelectedVehicleIdAsPref(vehicleId: String){
+        preferenceProvider.saveSelectedVehicleIdAsPref(vehicleId)
+    }
+
+    fun getSavedSelectedVehicleId(){
+        preferenceProvider.getSelectedVehicleId()
     }
 }

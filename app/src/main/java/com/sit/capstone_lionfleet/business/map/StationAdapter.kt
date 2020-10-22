@@ -9,18 +9,22 @@ import androidx.viewpager.widget.PagerAdapter
 import com.sit.capstone_lionfleet.R
 import com.sit.capstone_lionfleet.business.map.network.model.Vehicle
 import com.sit.capstone_lionfleet.core.di.ImageService
+import com.sit.capstone_lionfleet.core.di.PreferenceProvider
 
 class StationAdapter constructor(
     private val data: List<Vehicle>,
     private val imageService: ImageService,
-    private val clickListener: (Vehicle) -> Unit
+    private val clickListener: (Vehicle) -> Unit,
+
 ) : PagerAdapter() {
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val view = LayoutInflater.from(container.context)
             .inflate(R.layout.view_vehicle_list_item, container, false)
 
         val vehicle = data[position]
-        view.setOnClickListener { clickListener.invoke(vehicle) }
+        view.setOnClickListener {
+            clickListener.invoke(vehicle)
+        }
         val vehicleImage = view.findViewById<ImageView>(R.id.vehicleImage)
         val txtEngineType = view.findViewById<TextView>(R.id.textEngineType)
         val imgEngineType = view.findViewById<ImageView>(R.id.iconEngineType)

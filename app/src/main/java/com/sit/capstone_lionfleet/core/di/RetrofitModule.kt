@@ -4,8 +4,10 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.sit.capstone_lionfleet.BuildConfig
 import com.sit.capstone_lionfleet.business.bookings.network.BookingApi
+import com.sit.capstone_lionfleet.business.bookings.network.WorldTimeApi
 import com.sit.capstone_lionfleet.business.map.network.StationApi
 import com.sit.capstone_lionfleet.business.profile.network.ProfileApi
+import com.sit.capstone_lionfleet.business.vehiclebooking.network.VehicleBookingApi
 import com.sit.capstone_lionfleet.login.network.LoginApi
 import dagger.Module
 import dagger.Provides
@@ -35,6 +37,14 @@ object RetrofitModule {
             .baseUrl("https://capstone-cityfleet-api.herokuapp.com/")
             .addConverterFactory(GsonConverterFactory.create(gson))
     }
+
+//    @Singleton
+//    @Provides
+//    fun provideWorldTimeRetrofit(gson: Gson): Retrofit.Builder {
+//        return Retrofit.Builder()
+//            .baseUrl("http://worldtimeapi.org/api/timezone/")
+//            .addConverterFactory(GsonConverterFactory.create(gson))
+//    }
 
     @Singleton
     @Provides
@@ -90,4 +100,19 @@ object RetrofitModule {
             okHttpClient
         ).build().create(StationApi::class.java)
     }
+    @Singleton
+    @Provides
+    fun provideVehicleBookingApi(retrofit: Retrofit.Builder, okHttpClient: OkHttpClient): VehicleBookingApi{
+        return retrofit.client(
+            okHttpClient
+        ).build().create(VehicleBookingApi::class.java)
+    }
+
+//    @Singleton
+//    @Provides
+//    fun provideWorldTimeApi(retrofit: Retrofit.Builder, okHttpClient: OkHttpClient): WorldTimeApi{
+//        return retrofit.client(
+//            okHttpClient
+//        ).build().create(WorldTimeApi::class.java)
+//    }
 }

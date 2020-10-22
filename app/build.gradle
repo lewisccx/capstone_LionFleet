@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: 'dagger.hilt.android.plugin'
+//apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdkVersion 30
     buildToolsVersion "29.0.3"
@@ -39,6 +41,8 @@ android {
         viewBinding true
     }
     compileOptions {
+        // Flag to enable support for the new language APIs CalendarView
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -116,8 +120,11 @@ dependencies {
     implementation group: 'com.mapbox.mapboxsdk', name: 'mapbox-sdk-turf', version: '5.6.0'
 
     def mapbox_navigation_ver = "1.0.0"
-    implementation ("com.mapbox.navigation:ui:$mapbox_navigation_ver")
-
+    implementation ("com.mapbox.navigation:ui:$mapbox_navigation_ver"){
+        exclude group: 'android.arch.core'
+        transitive = true
+    }
+    
     def mapbox_places_plugin_ver = "0.12.0"
     implementation "com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:${mapbox_places_plugin_ver}"
 
@@ -133,4 +140,16 @@ dependencies {
     implementation "app.alan:sdk:$alan_ver"
 
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.1.0")
+
+    def desugar_jdk_libs= "1.0.10"
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:$desugar_jdk_libs"
+
+    def date_time_picker = "4.2.3"
+    implementation "com.wdullaer:materialdatetimepicker:$date_time_picker"
+
+    def jwt_decode = "2.0.0"
+    implementation "com.auth0.android:jwtdecode:$jwt_decode"
+
+//    def play_services_location = "17.0.0"
+//    implementation "com.google.android.gms:play-services-location:$play_services_location"
 }

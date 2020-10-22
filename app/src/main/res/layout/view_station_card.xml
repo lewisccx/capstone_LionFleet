@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/default_margin"
+    android:background="?attr/colorPrimary"
     app:behavior_hideable="true"
     app:behavior_peekHeight="0dp"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    android:background="?attr/colorPrimary"
-    app:cardCornerRadius="@dimen/smaller_margin"
-    tools:ignore="MissingPrefix"
     app:behavior_skipCollapsed="true"
+    app:cardCornerRadius="@dimen/smaller_margin"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    tools:ignore="MissingPrefix"
 
     >
 
@@ -20,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/primary_color">
+
         <View
             android:id="@+id/upper_view"
             android:layout_width="0dp"
@@ -61,10 +62,10 @@
                 android:id="@+id/background_circle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_station"
                 android:scaleX="1.2"
                 android:scaleY="1.2"
-                android:tint="@android:color/white"/>
+                android:src="@drawable/ic_station"
+                android:tint="@android:color/white" />
 
 
         </FrameLayout>
@@ -74,43 +75,79 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:textAppearance="@style/AndroidButtonLabelWhite"
             android:layout_marginTop="@dimen/small_margin"
             android:fontFamily="@font/roboto_bold"
+            android:textAppearance="@style/AndroidButtonLabelWhite"
             app:layout_constraintLeft_toRightOf="@+id/icon_station"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Location title" />
+
         <TextView
             android:id="@+id/station_address_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/smaller_margin"
             android:ellipsize="end"
-            android:textAppearance="@style/AndroidButtonLabelWhite"
             android:fontFamily="@font/roboto_light"
             android:maxLines="1"
+            android:textAppearance="@style/AndroidButtonLabelWhite"
             android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="@+id/location_name_tv"
             app:layout_constraintTop_toBottomOf="@+id/location_name_tv"
             tools:text="26 Pasir Ris Link 518145" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/icon_direction_walk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_directions_walk"
-            android:layout_marginTop="@dimen/smaller_margin"
-            android:layout_marginStart="135dp"
-            app:layout_constraintEnd_toStartOf="@+id/distance_num_tv"
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/directionRouteBtnToggle"
+            android:layout_width="108dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="@dimen/small_margin"
+            app:checkedButton="@+id/walkingDirectionRouteBtn"
+            app:layout_constraintBottom_toBottomOf="@+id/walking_time_tv"
 
+            app:layout_constraintEnd_toStartOf="@id/distance_num_tv"
             app:layout_constraintTop_toTopOf="@id/distance_num_tv"
-            app:layout_constraintBottom_toBottomOf="@+id/walking_time_tv"/>
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/walkingDirectionRouteBtn"
+                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                app:icon="@drawable/ic_directions_walk" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/cyclingDirectionRouteBtn"
+                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/ic_cycling" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/drivingDirectionRouteBtn"
+                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/ic_driving" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+        <!--        <com.google.android.material.imageview.ShapeableImageView-->
+        <!--            android:id="@+id/icon_direction_walk"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:src="@drawable/ic_directions_walk"-->
+        <!--            android:layout_marginTop="@dimen/smaller_margin"-->
+        <!--            android:layout_marginStart="135dp"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/distance_num_tv"-->
+
+        <!--            app:layout_constraintTop_toTopOf="@id/distance_num_tv"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@+id/walking_time_tv"/>-->
         <TextView
             android:id="@+id/distance_num_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/AndroidButtonLabelWhite"
             android:fontFamily="@font/roboto_bold_italic"
+            android:textAppearance="@style/AndroidButtonLabelWhite"
             android:textSize="12sp"
             app:layout_constraintEnd_toStartOf="@id/guideline13"
             app:layout_constraintTop_toBottomOf="@id/guideline11"
@@ -118,12 +155,12 @@
 
         <TextView
             android:id="@+id/walking_time_tv"
-            android:visibility="visible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/AndroidButtonLabelWhite"
             android:fontFamily="@font/roboto_bold_italic"
+            android:textAppearance="@style/AndroidButtonLabelWhite"
             android:textSize="12sp"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="@id/guideline13"
             app:layout_constraintTop_toBottomOf="@id/distance_num_tv"
             tools:text="16" />
@@ -165,56 +202,53 @@
             app:layout_constraintGuide_begin="20dp" />
 
         <androidx.viewpager.widget.ViewPager
-            app:layout_constraintTop_toBottomOf="@+id/upper_view"
             android:id="@+id/vehiclesViewPager"
             android:layout_width="match_parent"
             android:layout_height="180dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/upper_view" />
 
         <include
-            app:layout_constraintTop_toBottomOf="@+id/upper_view"
             android:id="@+id/station_vehicles_Loading"
             layout="@layout/view_loading"
-            android:layout_margin="@dimen/smaller_margin"
             android:layout_width="match_parent"
             android:layout_height="180dp"
+            android:layout_margin="@dimen/smaller_margin"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/vehicleTabLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/upper_view" />
 
         <include
-            app:layout_constraintTop_toBottomOf="@+id/upper_view"
             android:id="@+id/station_no_vehicle_view"
             layout="@layout/view_no_vehicle"
-            android:layout_margin="@dimen/smaller_margin"
             android:layout_width="match_parent"
             android:layout_height="160dp"
+            android:layout_margin="@dimen/smaller_margin"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/vehicleTabLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/upper_view" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/vehicleTabLayout"
             android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginStart="@dimen/default_margin"
             android:layout_marginTop="@dimen/smaller_margin"
             android:layout_marginBottom="@dimen/small_margin"
-            android:layout_height="24dp"
-            android:textAlignment="textStart"
-            app:tabGravity="start"
-
-            app:tabBackground="@drawable/selector_tab_indicator"
-            app:tabIndicator="@null"
-            app:tabPaddingEnd="8dp"
-            android:layout_marginStart="@dimen/default_margin"
-            app:layout_constraintTop_toBottomOf="@+id/vehiclesViewPager"
             android:background="@android:color/transparent"
+
+            android:textAlignment="textStart"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vehiclesViewPager"
+            app:tabBackground="@drawable/selector_tab_indicator"
+            app:tabGravity="start"
+            app:tabIndicator="@null"
+            app:tabPaddingEnd="8dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

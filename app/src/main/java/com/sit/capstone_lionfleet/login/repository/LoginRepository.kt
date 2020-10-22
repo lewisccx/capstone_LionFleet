@@ -3,6 +3,7 @@ package com.sit.capstone_lionfleet.login.repository
 import com.sit.capstone_lionfleet.base.repository.BaseRepository
 import com.sit.capstone_lionfleet.base.response.Resource
 import com.sit.capstone_lionfleet.core.di.PreferenceProvider
+import com.sit.capstone_lionfleet.dataSource.local.dao.UserDao
 import com.sit.capstone_lionfleet.login.network.LoginApi
 import com.sit.capstone_lionfleet.login.network.request.LoginRequest
 import com.sit.capstone_lionfleet.login.network.response.LoginResponse
@@ -24,7 +25,7 @@ constructor(
         loginRequest: LoginRequest
     ): Flow<Resource<LoginResponse>> = flow {
         emit(Resource.Loading)
-        delay(1000)
+
         val loginResponse = safeApiCall {
             api.login(loginRequest)
         }

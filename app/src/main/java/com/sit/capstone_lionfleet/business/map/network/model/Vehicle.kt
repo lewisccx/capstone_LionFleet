@@ -1,9 +1,11 @@
 package com.sit.capstone_lionfleet.business.map.network.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import com.sit.capstone_lionfleet.business.map.network.response.Pricing
+import kotlinx.android.parcel.Parcelize
 
-data class Vehicle (
+@Parcelize
+data class Vehicle(
     val availability: Boolean,
     val brand: String,
     @SerializedName("_id")
@@ -17,4 +19,4 @@ data class Vehicle (
     val costsPerDay: Int,
     val stationId: String,
     val stationName: String
-)
+) : Parcelable

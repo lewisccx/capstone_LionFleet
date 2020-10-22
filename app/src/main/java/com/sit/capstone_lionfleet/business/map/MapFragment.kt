@@ -4,6 +4,7 @@ import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.graphics.PointF
 import android.location.Location
 import android.net.ConnectivityManager
@@ -20,8 +21,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.alan.alansdk.button.AlanButton
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.button.MaterialButtonToggleGroup
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
@@ -29,8 +33,11 @@ import com.mapbox.android.core.location.*
 import com.mapbox.api.directions.v5.DirectionsCriteria
 import com.mapbox.api.directions.v5.MapboxDirections
 import com.mapbox.api.directions.v5.models.DirectionsResponse
+import com.mapbox.api.directions.v5.models.DirectionsRoute
+import com.mapbox.core.constants.Constants
 import com.mapbox.geojson.Feature
 import com.mapbox.geojson.FeatureCollection
+import com.mapbox.geojson.LineString
 import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.camera.CameraPosition
@@ -45,6 +52,9 @@ import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
+import com.mapbox.mapboxsdk.style.layers.LineLayer
+import com.mapbox.mapboxsdk.style.layers.Property.LINE_CAP_ROUND
+import com.mapbox.mapboxsdk.style.layers.Property.LINE_JOIN_ROUND
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.*
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
@@ -54,17 +64,20 @@ import com.sit.capstone_lionfleet.R
 import com.sit.capstone_lionfleet.base.response.Resource
 import com.sit.capstone_lionfleet.business.map.constants.IconIdConstants.INDIVIDUAL_SELECTED_STATION_ICON_IMAGE_ID
 import com.sit.capstone_lionfleet.business.map.constants.IconIdConstants.INDIVIDUAL_STATION_ICON_IMAGE_ID
-import com.sit.capstone_lionfleet.business.map.constants.LayerIdConstants.INDIVIDUAL_SELECTED_STATION_SYMBOL_LAYER_ID
-import com.sit.capstone_lionfleet.business.map.constants.LayerIdConstants.INDIVIDUAL_STATION_SYMBOL_LAYER_ID
+import com.sit.capstone_lionfleet.business.map.constants.LayerIdConstants.*
 import com.sit.capstone_lionfleet.business.map.constants.PropertyConstants.Companion.MAPBOX_SG_LAT_LNG_COORDINATES
+import com.sit.capstone_lionfleet.business.map.constants.PropertyConstants.Companion.STATION_ADDRESS
 import com.sit.capstone_lionfleet.business.map.constants.PropertyConstants.Companion.STATION_ID
-import com.sit.capstone_lionfleet.business.map.constants.SourceIdConstants.INDIVIDUAL_SELECTED_STATION_SOURCE_ID
-import com.sit.capstone_lionfleet.business.map.constants.SourceIdConstants.INDIVIDUAL_STATION_SOURCE_ID
+import com.sit.capstone_lionfleet.business.map.constants.PropertyConstants.Companion.STATION_NAME
+import com.sit.capstone_lionfleet.business.map.constants.SourceIdConstants.*
 import com.sit.capstone_lionfleet.core.di.ImageService
+import com.sit.capstone_lionfleet.core.di.PreferenceProvider
 import com.sit.capstone_lionfleet.core.extension.hide
 import com.sit.capstone_lionfleet.core.extension.show
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.view_station_card.*
+import org.json.JSONException
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -90,6 +103,8 @@ open class MapFragment : Fragment(), OnMapReadyCallback,
     private val toBottom: Animation by lazy {
         AnimationUtils.loadAnimation(requireContext(), R.anim.to_bottom_anim)
     }
+    private lateinit var directionRouteBtnGroup: MaterialButtonToggleGroup
+    private lateinit var walkingDirectionRouteBtn: MaterialButton
     private lateinit var vehicleViewPager: ViewPager
     private lateinit var vehicleTabLayout: TabLayout
     private lateinit var fabSettings: FloatingActionButton
@@ -106,6 +121,7 @@ open class MapFragment : Fragment(), OnMapReadyCallback,
     private var locationComponent: LocationComponent? = null
     private var directionApiClient: MapboxDirections? = null
     private var currentSelectedStationLatLng: LatLng? = null
+    private var selectedVehicleId: String? = null
     val STATION_ICON_ANIMATION_SPEED: Long = 300
     val ZOOM_LEVEL = 10.0
     val TILT_LEVEL = 20.0
@@ -115,6 +131,10 @@ open class MapFragment : Fragment(), OnMapReadyCallback,
 
     @Inject
     lateinit var imageService: ImageService
+
+    @Inject
+    lateinit var preferenceProvider: PreferenceProvider
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -132,16 +152,41 @@ open class MapFragment : Fragment(), OnMapReadyCallback,
                 Toast.LENGTH_SHORT
             ).show()
         }
+        setVisualState()
         //Set up expandable fab
         initFabs(view)
         //Set up station card
         initView(view)
         //Set up ViewPager
         initVehicleViewPager(view)
+        //Set up DirectionRouteButtonToggle
+        initDirectionRouteBtnToggle(view)
         //Set up Mapbox map
         mapView = view.findViewById(R.id.mapBoxMap)
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
+    }
+
+    private fun setVisualState() {
+        var visualState: JSONObject? = null
+        try {
+            visualState = JSONObject("{\"fragment\":\"map\"}")
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+        requireActivity().findViewById<AlanButton>(R.id.alan_button)
+            .setVisualState(visualState.toString())
+    }
+
+    private fun initDirectionRouteBtnToggle(view: View) {
+        directionRouteBtnGroup = view.findViewById(R.id.directionRouteBtnToggle)
+        directionRouteBtnGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
+            when (checkedId) {
+                R.id.cyclingDirectionRouteBtn -> {
+                    Log.d(TAG, "cycling")
+                }
+            }
+        }
     }
 
     private fun initVehicleViewPager(view: View) {
@@ -253,8 +298,13 @@ open class MapFragment : Fragment(), OnMapReadyCallback,
                     } else {
                         showStationInfoWindow()
                         vehicleViewPager.adapter = StationAdapter(dataState.value, imageService) {
+                            //save to selected vehicle to preference
 
+                            viewModel.saveSelectedVehicleIdAsPref(it.id)
                             //navigate to vehicle booking schedule fragment
+                            val action =
+                                MapFragmentDirections.actionNavigationMapToVehicleBookingFragment(it)
+                            findNavController().navigate(action)
                             Toast.makeText(requireContext(), it.id, Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -280,6 +330,27 @@ open class MapFragment : Fragment(), OnMapReadyCallback,
     private fun setUpMapData(loadedMapStyle: Style) {
         addStationsToMap(loadedMapStyle)
         initSelectedStationIconLayer(loadedMapStyle)
+        initDashWalkingDirectionLineLayer(loadedMapStyle)
+    }
+
+    private fun initDashWalkingDirectionLineLayer(loadedMapStyle: Style) {
+        val walkingDirectionSource = GeoJsonSource(WALK_TO_STATION_ROUTE_SOURCE_ID)
+        val walkingLineLayer = LineLayer(
+            WALK_TO_STATION_ROUTE_LINE_LAYER_ID,
+            WALK_TO_STATION_ROUTE_SOURCE_ID
+        )
+        loadedMapStyle.addSource(walkingDirectionSource)
+        loadedMapStyle.addLayer(
+            walkingLineLayer
+                .withProperties(
+                    lineWidth(6f),
+                    lineOpacity(.6f),
+                    lineCap(LINE_CAP_ROUND),
+                    lineJoin(LINE_JOIN_ROUND),
+                    lineColor(Color.parseColor("#4ed9ba")),
+                    lineDasharray(arrayOf(1f, 2f))
+                )
+        )
     }
 
     private fun addStationsToMap(loadedMapStyle: Style) {
@@ -427,9 +498,9 @@ open class MapFragment : Fragment(), OnMapReadyCallback,
     private fun evaluateClick(stationList: List<Feature>) {
         val selectedStation: Feature = stationList[0]
 
-        Log.d(TAG, "Before if check ${selectedStation.getStringProperty(STATION_ID)}")
         if (selectedStation.hasProperty(STATION_ID)) {
-            Log.d(TAG, "After if check ${selectedStation.getStringProperty(STATION_ID)}")
+            location_name_tv.text = selectedStation.getStringProperty(STATION_NAME)
+            station_address_tv.text = selectedStation.getStringProperty(STATION_ADDRESS)
             val selectedStationId = selectedStation.getStringProperty(STATION_ID)
             viewModel.setMapEvent(MapStateEvent.GetVehiclesByStationId, selectedStationId)
         } else {
@@ -476,7 +547,7 @@ open class MapFragment : Fragment(), OnMapReadyCallback,
                     return
                 } else {
                     //retrieve and the navigation route on the map
-                    //drawNavigationPolylineRoute(response.body()!!.routes()[0])
+                    drawNavigationPolylineRoute(response.body()!!.routes()[0])
                     setVehicleWalkToDistance(response.body());
                     setWalkToStationTime(response.body());
 //                    getVehicleLocation(
@@ -497,6 +568,21 @@ open class MapFragment : Fragment(), OnMapReadyCallback,
                     .show()
             }
         })
+    }
+
+    private fun drawNavigationPolylineRoute(route: DirectionsRoute) {
+        if (mapboxMap.style != null) {
+            mapboxMap.style?.getSourceAs<GeoJsonSource>(
+                WALK_TO_STATION_ROUTE_SOURCE_ID
+            )?.setGeoJson(
+                Feature.fromGeometry(
+                    LineString.fromPolyline(
+                        route.geometry()!!,
+                        Constants.PRECISION_6
+                    )
+                )
+            )
+        }
     }
 
     private fun setWalkToStationTime(response: DirectionsResponse?) {
@@ -522,7 +608,7 @@ open class MapFragment : Fragment(), OnMapReadyCallback,
                 getString(R.string.walking_miles),
                 DecimalFormat("0.0").format(
                     TurfConversion.convertLength(
-                        response.routes()[0].distance()!!/1000,
+                        response.routes()[0].distance()!! / 1000,
                         "meters", "meters"
                     )
                 )
@@ -697,7 +783,7 @@ open class MapFragment : Fragment(), OnMapReadyCallback,
         mapboxMap.removeOnMapClickListener(this)
         mapView.removeOnDidFinishLoadingStyleListener(this)
         //handle directionApiClient
-
+        directionApiClient?.cancelCall()
         mapView.onDestroy()
     }
 

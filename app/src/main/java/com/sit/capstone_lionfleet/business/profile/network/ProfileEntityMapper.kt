@@ -2,7 +2,7 @@ package com.sit.capstone_lionfleet.business.profile.network
 
 import com.sit.capstone_lionfleet.business.profile.network.response.ProfileResponse
 
-import com.sit.capstone_lionfleet.profile.network.model.User
+import com.sit.capstone_lionfleet.business.profile.network.model.User
 
 import com.sit.capstone_lionfleet.utils.EntityMapper
 import javax.inject.Inject

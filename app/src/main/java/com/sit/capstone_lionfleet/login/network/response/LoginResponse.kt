@@ -1,6 +1,5 @@
 package com.sit.capstone_lionfleet.login.network.response
 
-
 import com.google.gson.annotations.SerializedName
 
 data class LoginResponse(
@@ -8,6 +7,6 @@ data class LoginResponse(
     val message: String,
 
     @SerializedName("token")
-    val token: String
+    val token: String,
 
-)
+    )

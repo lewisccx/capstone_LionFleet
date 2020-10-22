@@ -17,7 +17,7 @@ class BookingScheduledAdapter(private val itemClickListener: ItemClickListener) 
 
     private val differCallback = object : DiffUtil.ItemCallback<Booking>() {
         override fun areItemsTheSame(oldItem: Booking, newItem: Booking): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.id == newItem.id && oldItem.status == newItem.status
         }
 
         override fun areContentsTheSame(oldItem: Booking, newItem: Booking): Boolean {

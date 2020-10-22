@@ -1,16 +1,15 @@
 package com.sit.capstone_lionfleet.dataSource.local.model
 
-
-import androidx.lifecycle.LiveData
-import com.sit.capstone_lionfleet.profile.network.model.User
+import com.sit.capstone_lionfleet.business.profile.network.model.User
 import com.sit.capstone_lionfleet.utils.EntityMapper
 import javax.inject.Inject
 
 class UserCacheMapper
 @Inject
 constructor() : EntityMapper<UserCacheEntity, User> {
-    override fun mapFromEntity(entity:UserCacheEntity): User {
+    override fun mapFromEntity(entity: UserCacheEntity): User {
         return User(
+
             postcode = entity.postcode,
             street = entity.street,
             streetNumber = entity.streetNumber,
@@ -27,6 +26,7 @@ constructor() : EntityMapper<UserCacheEntity, User> {
 
     fun mapToEntity(domainModel: User): UserCacheEntity {
         return UserCacheEntity(
+
             postcode = domainModel.postcode,
             street = domainModel.street,
             streetNumber = domainModel.streetNumber,

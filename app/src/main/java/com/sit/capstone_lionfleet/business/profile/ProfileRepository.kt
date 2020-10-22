@@ -7,7 +7,7 @@ import com.sit.capstone_lionfleet.business.profile.network.ProfileEntityMapper
 import com.sit.capstone_lionfleet.core.di.PreferenceProvider
 import com.sit.capstone_lionfleet.dataSource.local.dao.UserDao
 import com.sit.capstone_lionfleet.dataSource.local.model.UserCacheMapper
-import com.sit.capstone_lionfleet.profile.network.model.User
+import com.sit.capstone_lionfleet.business.profile.network.model.User
 import com.sit.capstone_lionfleet.utils.Constants
 import com.sit.capstone_lionfleet.utils.isFetchNeeded
 import kotlinx.coroutines.flow.Flow

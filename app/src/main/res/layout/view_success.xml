@@ -61,12 +61,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtSuccessfulMessage" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnOkay"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/state_primary_btn"
+        android:backgroundTint="@color/color_states_material_primary_button"
         android:text="@string/ok_booking"
         android:textAllCaps="false"
         android:textAppearance="@style/AndroidButtonLabelWhite"

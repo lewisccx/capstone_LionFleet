@@ -10,9 +10,9 @@ data class BookingCacheEntity(
     @PrimaryKey(autoGenerate = false)
     val id: String,
     @ColumnInfo(name = "checkedIn_ts")
-    val checkedInTs: Date,
+    val checkedInTs: Date?,
     @ColumnInfo(name = "checkedOut_ts")
-    val checkedOutTs: Date,
+    val checkedOutTs: Date?,
     val createdAt: Date,
     val distance: Int,
     @ColumnInfo(name = "reserved_date")

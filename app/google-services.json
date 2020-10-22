@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "654508271010",
+    "firebase_url": "https://lionfleet-singapore.firebaseio.com",
+    "project_id": "lionfleet-singapore",
+    "storage_bucket": "lionfleet-singapore.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654508271010:android:9cb482ff44b6f0db327efb",
+        "android_client_info": {
+          "package_name": "com.sit.capstone_lionfleet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "654508271010-5cvu5go7kvr2r5ac164allp5o21qc272.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6qxfBIb85uC5Yv2qeMW6iDC1KHOF_uio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "654508271010-5cvu5go7kvr2r5ac164allp5o21qc272.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,7 +3,7 @@ package com.sit.capstone_lionfleet.business.map.constants;
 public class SourceIdConstants {
 
   public static final String SELECTED_LOCK_STATION_SOURCE_ID = "SELECTED_LOCK_STATION_SOURCE_ID";
-  public static final String WALK_TO_VEHICLE_ROUTE_SOURCE_ID = "WALK_TO_VEHICLE_ROUTE_SOURCE_ID";
+  public static final String WALK_TO_STATION_ROUTE_SOURCE_ID = "WALK_TO_STATION_ROUTE_SOURCE_ID";
   public static final String MOPED_GARAGE_SOURCE_ID = "MOPED_GARAGE_SOURCE_ID";
   public static final String INDIVIDUAL_STATION_SOURCE_ID = "cityfleet_station_locations";
   public static final String INDIVIDUAL_SELECTED_STATION_SOURCE_ID = "INDIVIDUAL_SELECTED_STATION_SOURCE_ID";

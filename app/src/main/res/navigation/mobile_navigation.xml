@@ -17,11 +17,27 @@
     <fragment
         android:id="@+id/navigation_map"
         android:name="com.sit.capstone_lionfleet.business.map.MapFragment"
-        android:label="MapFragment" />
+        android:label="MapFragment" >
+        <action
+            android:id="@+id/action_navigation_map_to_vehicleBookingFragment"
+            app:destination="@id/vehicleBookingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_ongoing"
         android:name="com.sit.capstone_lionfleet.business.bookings.ongoing.OngoingFragment"
         android:label="ongoing_fragment"
         tools:layout="@layout/ongoing_fragment" />
+    <fragment
+        android:id="@+id/vehicleBookingFragment"
+        android:name="com.sit.capstone_lionfleet.business.vehiclebooking.VehicleBookingFragment"
+        android:label="VehicleBookingFragment" >
+        <action
+            android:id="@+id/action_vehicleBookingFragment_to_navigation_map"
+            app:destination="@id/navigation_map" />
+        <argument
+            android:name="SelectedVehicle"
+            app:argType="com.sit.capstone_lionfleet.business.map.network.model.Vehicle"
+            app:nullable="true" />
+    </fragment>
 
 </navigation>

@@ -11,7 +11,8 @@ abstract class BaseRepository {
     suspend fun <T> safeApiCall(apiCall: suspend () -> T): Resource<T> {
         return withContext(Dispatchers.IO) {
             try {
-                Resource.Success(apiCall.invoke())
+                val response =apiCall.invoke()
+                Resource.Success(response)
             } catch (throwable: Throwable) {
                 when (throwable) {
                     is HttpException -> {

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alan.alansdk.button.AlanButton
 import com.sit.capstone_lionfleet.R
 import com.sit.capstone_lionfleet.base.response.Resource
 import com.sit.capstone_lionfleet.business.bookings.BookingsStateEvent
@@ -18,6 +19,8 @@ import com.sit.capstone_lionfleet.core.extension.hide
 import com.sit.capstone_lionfleet.core.extension.show
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.history_fragment.*
+import org.json.JSONException
+import org.json.JSONObject
 
 @AndroidEntryPoint
 class HistoryFragment : Fragment() {
@@ -35,10 +38,20 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d(TAG, "onViewCreated")
+        setVisualState()
         observeViewModel()
         setUpRecyclerView()
     }
-
+    private fun setVisualState() {
+        var visualState: JSONObject? = null
+        try {
+            visualState = JSONObject("{\"fragment\":\"history\"}")
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+        requireActivity().findViewById<AlanButton>(R.id.alan_button)
+            .setVisualState(visualState.toString())
+    }
     private fun setUpRecyclerView() {
         bookingHistoryAdapter = BookingHistoryAdapter()
         rvHistoryBookings.apply {

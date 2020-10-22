@@ -1,9 +1,9 @@
 package com.sit.capstone_lionfleet.business.profile.network.response
 
-
 import com.google.gson.annotations.SerializedName
 
 data class User(
+
     @SerializedName("isActivated")
     val isActivated: Boolean,
     @SerializedName("licenseActivated")

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/vehicleBookingView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/vehicle_booking_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:elevation="@dimen/default_card_elevation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/vehcleModelBrand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:text="BMW BMW 1"
+                    android:textAppearance="@style/AndroidButtonLabelWhite"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:src="@drawable/ic_close"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <include
+            android:id="@+id/vehicle_card"
+            layout="@layout/view_vehicle_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vehicle_booking_appbar" />
+
+        <include
+            android:id="@+id/miscInfoView"
+            layout="@layout/view_misc_information"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vehicle_card" />
+
+        <TextView
+            android:id="@+id/txtCalenderTitle"
+            style="@style/AndroidSmallLightLowprio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:text="@string/booking_calendar_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/miscInfoView" />
+
+
+
+
+        <include
+
+            android:id="@+id/btnCalendarPicker"
+            layout="@layout/view_select_booking_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtCalenderTitle" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBookNow"
+            style="@style/AndroidButtonLabelWhite"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/material_button_size"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="@dimen/large_margin"
+            android:enabled="false"
+            android:gravity="center"
+            android:text="@string/book_now"
+            android:textAppearance="@style/AndroidButtonLabelWhite"
+            app:backgroundTint="@color/color_states_material_primary_button"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@id/btnCalendarPicker" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <include
+
+        android:id="@+id/vehicleBookingProgressBar"
+        layout="@layout/view_loading"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+
+        android:id="@+id/vehicleBookingSuccess"
+        layout="@layout/view_success"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <include
+
+        android:id="@+id/vehicleBookingFail"
+        layout="@layout/view_error"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

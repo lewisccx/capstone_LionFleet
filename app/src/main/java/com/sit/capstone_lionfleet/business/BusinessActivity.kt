@@ -1,6 +1,8 @@
 package com.sit.capstone_lionfleet.business
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.annotation.ColorRes
@@ -21,6 +23,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class BusinessActivity : AppCompatActivity() {
+    val TAG = "BusinessActivity"
     private lateinit var navController: NavController
     private lateinit var navView: BottomNavigationView
     private lateinit var fabNavigate: FloatingActionButton
@@ -42,9 +45,52 @@ class BusinessActivity : AppCompatActivity() {
         alanBtn.initWithConfig(config)
 
         val myCallback: AlanCallback = object : AlanCallback() {
+            @SuppressLint("LogNotTimber")
             override fun onCommandReceived(eventCommand: EventCommand) {
                 super.onCommandReceived(eventCommand)
-                //Handle command here
+                eventCommand?.data?.let {
+                    Log.d(TAG, it.toString())
+                    val commandObject = it.optJSONObject("data")
+                    Log.d(TAG, "${commandObject.optString("command")}")
+                    if (commandObject.optString("command") == "navigation") {
+                        if (commandObject.optString("route") == "forward") {
+                            when (navController.currentDestination?.id) {
+                                R.id.navigation_map -> {
+                                    navController.navigate(R.id.navigation_ongoing)
+                                }
+
+                                R.id.navigation_ongoing -> {
+                                    navController.navigate(R.id.navigation_bookings)
+                                }
+                                R.id.navigation_bookings -> {
+                                    navController.navigate(R.id.navigation_profile)
+                                }
+                                R.id.navigation_profile -> {
+                                    navController.navigate(R.id.navigation_map)
+                                }
+
+                            }
+                        } else if (commandObject.optString("route") == "back") {
+                            when (navController.currentDestination?.id) {
+                                R.id.navigation_map -> {
+                                    Log.d(TAG, "map")
+                                    navController.navigate(R.id.navigation_profile)
+                                }
+                                R.id.navigation_ongoing -> {
+
+                                    navController.navigate(R.id.navigation_map)
+                                }
+                                R.id.navigation_bookings -> {
+                                    navController.navigate(R.id.navigation_ongoing)
+                                }
+                                R.id.navigation_profile -> {
+                                    navController.navigate(R.id.navigation_bookings)
+                                }
+
+                            }
+                        }
+                    }
+                }
             }
         }
         alanBtn.registerCallback(myCallback)
@@ -59,7 +105,7 @@ class BusinessActivity : AppCompatActivity() {
         fabNavigate = findViewById(R.id.fab_navigate)
         fabNavigate.setOnClickListener {
             when (navController.currentDestination?.id) {
-                R.id.navigation_bookings, R.id.navigation_ongoing, R.id.navigation_profile -> {
+                R.id.navigation_bookings, R.id.navigation_ongoing, R.id.navigation_profile, R.id.vehicleBookingFragment -> {
 
                     navController.navigate(
                         R.id.navigation_map
@@ -69,19 +115,21 @@ class BusinessActivity : AppCompatActivity() {
                     param.bottomMargin = 135
                     alanBtn.layoutParams = param
                 }
+
             }
         }
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.navigation_map -> {
-                   changeStatusBarColor()
-
+                    changeStatusBarColor()
                 }
-                R.id.navigation_profile, R.id.navigation_ongoing, R.id.navigation_bookings -> {
+                R.id.navigation_profile, R.id.navigation_ongoing, R.id.navigation_bookings, R.id.vehicleBookingFragment -> {
+
                     val param = alanBtn.layoutParams as ViewGroup.MarginLayoutParams
                     param.bottomMargin = 135
                     alanBtn.layoutParams = param
                 }
+
                 else -> changeStatusBarColor()
             }
         }

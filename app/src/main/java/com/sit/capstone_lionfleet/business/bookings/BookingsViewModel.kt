@@ -8,6 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.sit.capstone_lionfleet.base.response.Resource
 import com.sit.capstone_lionfleet.business.bookings.network.model.Booking
 import com.sit.capstone_lionfleet.business.bookings.network.model.BookingStatus
+import com.sit.capstone_lionfleet.business.bookings.network.response.UpdateBookingResponse
+import com.sit.capstone_lionfleet.business.bookings.scheduled.ScheduledRepository
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -15,8 +17,14 @@ import kotlinx.coroutines.launch
 class BookingsViewModel
 @ViewModelInject
 constructor(
-    private val repository: BookingsRepository
+    private val repository: BookingsRepository,
+    private val scheduledRepository: ScheduledRepository
 ) : ViewModel() {
+    private val _updatedBookingDataState: MutableLiveData<Resource<UpdateBookingResponse>> =
+        MutableLiveData()
+
+    val updatedBookingsDataState: LiveData<Resource<UpdateBookingResponse>>
+        get() = _updatedBookingDataState
     private val _reservedBookingDataState: MutableLiveData<Resource<List<Booking>>> =
         MutableLiveData()
 
@@ -39,6 +47,9 @@ constructor(
                 is BookingsStateEvent.GetCheckInBookings -> {
                     retrieveCheckedInBookings()
                 }
+                is BookingsStateEvent.UpdateReservedBookingToStartable -> {
+                    updateReserveBookingToStartable()
+                }
             }
         }
     }
@@ -53,5 +64,12 @@ constructor(
         repository.getBookingByStatus(BookingStatus.BSTATE_RESERVED.status).onEach {
             _reservedBookingDataState.value = it
         }.launchIn(viewModelScope)
+    }
+
+    private suspend fun updateReserveBookingToStartable() {
+        scheduledRepository.updateReservedBookingStatus(BookingStatus.BSTATE_STARTABLE.status)
+            .onEach {
+                _updatedBookingDataState.value = it
+            }.launchIn(viewModelScope)
     }
 }

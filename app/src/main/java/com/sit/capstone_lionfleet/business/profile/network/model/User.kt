@@ -1,7 +1,6 @@
-package com.sit.capstone_lionfleet.profile.network.model
+package com.sit.capstone_lionfleet.business.profile.network.model
 
 data class User(
-
         val postcode: String,
         val street: String,
         val streetNumber: String,

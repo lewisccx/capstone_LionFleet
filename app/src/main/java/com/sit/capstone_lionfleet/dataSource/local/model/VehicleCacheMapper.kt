@@ -1,7 +1,6 @@
 package com.sit.capstone_lionfleet.dataSource.local.model
 
 import com.sit.capstone_lionfleet.business.map.network.model.Vehicle
-import com.sit.capstone_lionfleet.profile.network.model.User
 import com.sit.capstone_lionfleet.utils.EntityMapper
 import javax.inject.Inject
 

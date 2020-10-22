@@ -12,7 +12,7 @@ interface BookingDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(bookingCacheEntity: BookingCacheEntity): Long
 
-    @Query("SELECT * FROM bookings WHERE status = :status")
+    @Query("SELECT * FROM bookings WHERE status = :status Order by reserved_date asc")
     suspend fun getBookingsByStatus(status: String): List<BookingCacheEntity>
 
     @Delete

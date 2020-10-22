@@ -1,8 +1,6 @@
 package com.sit.capstone_lionfleet.business.profile
 
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,16 +8,19 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.alan.alansdk.button.AlanButton
 import com.sit.capstone_lionfleet.R
 import com.sit.capstone_lionfleet.base.response.Resource
+import com.sit.capstone_lionfleet.business.profile.network.model.User
 import com.sit.capstone_lionfleet.core.extension.enable
 import com.sit.capstone_lionfleet.core.extension.hide
 import com.sit.capstone_lionfleet.core.extension.show
 import com.sit.capstone_lionfleet.core.extension.showIf
-import com.sit.capstone_lionfleet.profile.network.model.User
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.view_profile_no_driverlicense.*
+import org.json.JSONException
+import org.json.JSONObject
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
@@ -36,12 +37,32 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
+        setVisualState()
+
         observeViewModel()
         performProfileAction()
+        initBtns()
+    }
+
+    private fun setVisualState() {
+        var visualState: JSONObject? = null
+        try {
+            visualState = JSONObject("{\"fragment\":\"profile\"}")
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+        requireActivity().findViewById<AlanButton>(R.id.alan_button)
+            .setVisualState(visualState.toString())
+    }
+
+    private fun initBtns() {
+        btnSignOut.setOnClickListener {
+            viewModel.setProfileStateEvent(ProfileStateEvent.signOut, requireActivity())
+        }
     }
 
     private fun performProfileAction() {
-        viewModel.setProfileStateEvent(ProfileStateEvent.getProfile)
+        viewModel.setProfileStateEvent(ProfileStateEvent.getProfile, requireActivity())
     }
 
     private fun initViews() {
@@ -84,8 +105,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             rightArrowIcon.setBackgroundColor(resources.getColor(R.color.primary_color))
             rightArrowIcon.setImageDrawable(resources.getDrawable(R.drawable.ic_check_circle_white))
             btnInvalidDriverLicense.enable(false)
-        }else{
-            txtValidated.text =resources.getString(R.string.profile_driver_license_validated)
+        } else {
+            txtValidated.text = resources.getString(R.string.profile_driver_license_validated)
         }
         Toast.makeText(requireContext(), user.firstName, Toast.LENGTH_SHORT).show()
     }

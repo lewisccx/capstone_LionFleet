@@ -10,6 +10,7 @@ import javax.inject.Inject
 class BookingEntityMapper
 @Inject
 constructor() : EntityMapper<BookingItem, Booking> {
+
     override fun mapFromEntity(entity: BookingItem): Booking {
         return Booking(
             id = entity.id,
