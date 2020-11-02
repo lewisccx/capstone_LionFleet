@@ -14,6 +14,7 @@ constructor(@ApplicationContext private val context: Context) {
         const val CURRENT_LOGGED_IN_USER_ID_KEY = "CURRENT_LOGGED_IN_USER_ID"
         const val PWD_RESET_KEY = "PWD_RESET_KEY"
         const val SELECTED_VEHICLE_ID_KEY = "SELECTED_VEHICLE_ID_KEY"
+        const val CAR_LOCK = "CAR_LOCK"
     }
 
     private val preference: SharedPreferences
@@ -67,6 +68,16 @@ constructor(@ApplicationContext private val context: Context) {
 
     fun deleteValueByKey(key: String){
         preference.edit().remove(key).commit()
+    }
+
+    fun saveCarStatus(value: Boolean){
+        preference.edit().putBoolean(
+            CAR_LOCK, value
+        ).apply()
+    }
+
+    fun getCarStatus(): Boolean{
+        return preference.getBoolean(CAR_LOCK, true)
     }
     fun savePasswordResetToken(token: String?) {
         preference.edit().putString(

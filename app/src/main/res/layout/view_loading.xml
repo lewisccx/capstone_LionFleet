@@ -8,15 +8,29 @@
     <ProgressBar
         android:id="@+id/progressBar"
         style="@style/Widget.AppCompat.ProgressBar"
-        android:layout_width="@dimen/default_progress_bar_size"
-        android:layout_height="@dimen/default_progress_bar_size"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_above="@+id/txtLoadingMessage"
         android:indeterminateTint="@color/primary_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/ivErrorImage"
+        android:layout_width="@dimen/default_center_icon_size"
+        android:layout_height="@dimen/default_center_icon_size"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:contentDescription="@null"
+        app:layout_constraintTop_toTopOf="@+id/progressBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
 
+       app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:srcCompat="@drawable/ic_launcher_icon" />
     <TextView
         android:id="@+id/txtLoadingMessage"
         style="@style/AndroidMediumTextCenteredPrimary"

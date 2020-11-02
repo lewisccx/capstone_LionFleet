@@ -66,7 +66,6 @@ import com.sit.capstone_lionfleet.business.map.constants.IconIdConstants.INDIVID
 import com.sit.capstone_lionfleet.business.map.constants.IconIdConstants.INDIVIDUAL_STATION_ICON_IMAGE_ID
 import com.sit.capstone_lionfleet.business.map.constants.LayerIdConstants.*
 import com.sit.capstone_lionfleet.business.map.constants.PropertyConstants.Companion.MAPBOX_SG_LAT_LNG_COORDINATES
-import com.sit.capstone_lionfleet.business.map.constants.PropertyConstants.Companion.STATION_ADDRESS
 import com.sit.capstone_lionfleet.business.map.constants.PropertyConstants.Companion.STATION_ID
 import com.sit.capstone_lionfleet.business.map.constants.PropertyConstants.Companion.STATION_NAME
 import com.sit.capstone_lionfleet.business.map.constants.SourceIdConstants.*
@@ -103,6 +102,7 @@ open class MapFragment : Fragment(), OnMapReadyCallback,
     private val toBottom: Animation by lazy {
         AnimationUtils.loadAnimation(requireContext(), R.anim.to_bottom_anim)
     }
+    private val CURRENT_USER_LOCATION_KEY = "CURRENT_USER_LOCATION_KEY"
     private lateinit var directionRouteBtnGroup: MaterialButtonToggleGroup
     private lateinit var walkingDirectionRouteBtn: MaterialButton
     private lateinit var vehicleViewPager: ViewPager
@@ -113,7 +113,7 @@ open class MapFragment : Fragment(), OnMapReadyCallback,
     private var fabSettingsClicked = false
 
     private lateinit var mapboxMap: MapboxMap
-    private lateinit var mapView: MapView
+    private var mapView: MapView? = null
     private var locationEngine: LocationEngine? = null
     private var selectedStationSymbolLayer: SymbolLayer? = null
     private val DEFAULT_INTERVAL_IN_MILLISECONDS = 1000L
@@ -163,8 +163,8 @@ open class MapFragment : Fragment(), OnMapReadyCallback,
         initDirectionRouteBtnToggle(view)
         //Set up Mapbox map
         mapView = view.findViewById(R.id.mapBoxMap)
-        mapView.onCreate(savedInstanceState)
-        mapView.getMapAsync(this)
+        // mapView!!.onCreate(savedInstanceState)
+        mapView!!.getMapAsync(this)
     }
 
     private fun setVisualState() {
@@ -216,6 +216,27 @@ open class MapFragment : Fragment(), OnMapReadyCallback,
         fabLocation.setOnClickListener {
             enableLocationComponent(mapboxMap)
         }
+        //navigation fab
+        val navigationFab = requireActivity().findViewById<FloatingActionButton>(R.id.fab_navigate)
+        navigationFab.setOnClickListener {
+            showBottomSheetNavigationOptionsDialog()
+        }
+    }
+
+    private fun showBottomSheetNavigationOptionsDialog() {
+        val mapNavigationOptionBottomSheet = MapNavigationOptionBottomSheet()
+        val currentUserLocationLatLng = LatLng(
+            locationComponent!!.lastKnownLocation!!.latitude,
+            locationComponent!!.lastKnownLocation!!.longitude
+        )
+        val bundle = Bundle()
+        bundle.putParcelable(CURRENT_USER_LOCATION_KEY, currentUserLocationLatLng)
+        Log.d(TAG, currentUserLocationLatLng.toString())
+        mapNavigationOptionBottomSheet.arguments = bundle
+        mapNavigationOptionBottomSheet.show(
+            childFragmentManager,
+            "mapNavigationOptionBottomSheet",
+        )
     }
 
     private fun mapStyleToggle(mapboxMap: MapboxMap) {
@@ -276,7 +297,7 @@ open class MapFragment : Fragment(), OnMapReadyCallback,
         mapboxMap.setStyle(
             Style.MAPBOX_STREETS
         ) { style ->
-            mapView.addOnDidFinishLoadingStyleListener(this@MapFragment)
+            mapView!!.addOnDidFinishLoadingStyleListener(this@MapFragment)
             mapboxMap.addOnMapClickListener(this@MapFragment)
 
             customizeUISettings(mapboxMap)
@@ -287,6 +308,24 @@ open class MapFragment : Fragment(), OnMapReadyCallback,
     }
 
     private fun observeViewModel() {
+
+        viewModel.stationVehicleAvailableDataState.observe(viewLifecycleOwner, { dataState ->
+            when (dataState) {
+                is Resource.Success -> {
+                    station_vehicles_availability.text =
+                        "${dataState.value.available} / ${dataState.value.total} available"
+                }
+
+                is Resource.Failure -> {
+                    station_vehicles_availability.text = "? / ? available"
+                }
+
+                is Resource.Loading -> {
+                    station_vehicles_availability.text = "......"
+                }
+            }
+        })
+
         viewModel.stationVehiclesDataState.observe(viewLifecycleOwner, { dataState ->
 
             when (dataState) {
@@ -447,6 +486,7 @@ open class MapFragment : Fragment(), OnMapReadyCallback,
             TAG,
             "${locationComponent!!.lastKnownLocation?.latitude} ${locationComponent!!.lastKnownLocation?.longitude}"
         )
+        viewModel.userLocationLatLng.postValue(locationComponent!!.lastKnownLocation)
     }
 
     override fun onMapClick(point: LatLng): Boolean {
@@ -500,8 +540,9 @@ open class MapFragment : Fragment(), OnMapReadyCallback,
 
         if (selectedStation.hasProperty(STATION_ID)) {
             location_name_tv.text = selectedStation.getStringProperty(STATION_NAME)
-            station_address_tv.text = selectedStation.getStringProperty(STATION_ADDRESS)
+            //get station vehicle availability
             val selectedStationId = selectedStation.getStringProperty(STATION_ID)
+            viewModel.setMapEvent(MapStateEvent.GetStationVehicleStatus, selectedStationId)
             viewModel.setMapEvent(MapStateEvent.GetVehiclesByStationId, selectedStationId)
         } else {
             Toast.makeText(requireContext(), R.string.mapbox_dataset_error, Toast.LENGTH_SHORT)
@@ -755,40 +796,40 @@ open class MapFragment : Fragment(), OnMapReadyCallback,
 
     override fun onStart() {
         super.onStart()
-        mapView.onStart()
+        mapView!!.onStart()
     }
 
     override fun onResume() {
         super.onResume()
-        mapView.onResume()
+        mapView!!.onResume()
     }
 
     override fun onPause() {
         super.onPause()
-        mapView.onPause()
+        mapView!!.onPause()
     }
 
     override fun onStop() {
         super.onStop()
-        mapView.onStop()
+        mapView!!.onStop()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        mapView.onSaveInstanceState(outState)
+        //mapView!!.onSaveInstanceState(outState)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         mapboxMap.removeOnMapClickListener(this)
-        mapView.removeOnDidFinishLoadingStyleListener(this)
+        mapView!!.removeOnDidFinishLoadingStyleListener(this)
         //handle directionApiClient
         directionApiClient?.cancelCall()
-        mapView.onDestroy()
+        mapView!!.onDestroy()
     }
 
     override fun onLowMemory() {
         super.onLowMemory()
-        mapView.onLowMemory()
+        mapView!!.onLowMemory()
     }
 }

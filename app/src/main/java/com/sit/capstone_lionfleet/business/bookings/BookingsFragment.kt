@@ -56,7 +56,40 @@ class BookingsFragment : Fragment(R.layout.fragment_bookings) {
         bookingTabLayout.setupWithViewPager(bookingViewPager)
         bookingTabLayout.getTabAt(0)!!.setIcon(R.drawable.ic_schedule)
         bookingTabLayout.getTabAt(1)!!.setIcon(R.drawable.ic_booking_history)
+        bookingTabLayout.addOnTabSelectedListener(object:TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+               when(tab!!.position){
+                   0 -> {
+                       sort_view.hide()
+                   }
+                   1->{
+                       sort_view.show()
+                   }
+               }
+            }
 
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                when(tab!!.position){
+                    0 -> {
+                        sort_view.hide()
+                    }
+                    1->{
+                        sort_view.show()
+                    }
+                }
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                when(tab!!.position){
+                    0 -> {
+                        sort_view.hide()
+                    }
+                    1->{
+                        sort_view.show()
+                    }
+                }
+            }
+        })
     }
 
 

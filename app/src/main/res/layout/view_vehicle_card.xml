@@ -65,6 +65,16 @@
             app:layout_constraintTop_toBottomOf="@+id/vehicleModelBrand"
             tools:text="Techbase Station" />
 
+        <TextView
+            android:id="@+id/availableMsg"
+            style="@style/AndroidInputLabelLightLowprio"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/smaller_margin"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/vehicleModelBrand"
+            app:layout_constraintTop_toBottomOf="@+id/stationName"
+            android:text="@string/info_window_vehicles_available_now"
+            tools:text="Available Now" />
 
 
         <androidx.constraintlayout.widget.Barrier
@@ -85,13 +95,12 @@
             android:paddingTop="0dp"
             android:paddingBottom="-12dp"
             android:paddingEnd="-12dp"
-            app:layout_constraintEnd_toEndOf="@id/stationName"
             android:layout_marginTop="@dimen/smaller_margin"
             android:scaleType="fitCenter"
             android:visibility="visible"
             android:src="@drawable/ic_vehicle_available"
             app:layout_constraintTop_toBottomOf="@id/stationName"
-            app:layout_constraintStart_toStartOf="@+id/stationName"
+            app:layout_constraintStart_toEndOf="@+id/availableMsg"
 
            />
 

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/Theme.Material_Light"
-    >
+    android:fitsSystemWindows="true"
+    android:theme="@style/Theme.Material_Light">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/ongoingAppBarLayout"
@@ -42,8 +42,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/view_ongoing"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ongoingAppBarLayout">
 
 
@@ -53,11 +53,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/default_margin_horizontal"
-            android:layout_marginTop="@dimen/subtitle_margin_vertical"
+            android:layout_marginTop="72dp"
             android:text="@string/booking_info_txt"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+          />
 
 
         <com.google.android.material.card.MaterialCardView
@@ -80,7 +81,19 @@
                 >
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/startDateAndTimeTitle"
+                    android:id="@+id/StartDateAndTimeTitle"
+                    style="@style/AndroidInputLabelLightLowprio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:layout_marginBottom="@dimen/large_margin"
+                    android:text="@string/reserved_booking_start_date_time"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/CheckInDateAndTimeTitle"
                     style="@style/AndroidInputLabelLightLowprio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -90,8 +103,8 @@
                     android:text="@string/confirm_booking_start_date_time"
                     app:layout_constraintBottom_toTopOf="@id/durationIcon"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Start date and time" />
+                    app:layout_constraintTop_toBottomOf="@id/StartDateAndTimeTitle" />
+
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/durationIcon"
@@ -101,8 +114,8 @@
                     android:contentDescription="@null"
                     android:src="@drawable/ic_time"
                     app:layout_constraintBottom_toBottomOf="@id/durationTitle"
-                    app:layout_constraintStart_toStartOf="@id/startDateAndTimeTitle"
-                    app:layout_constraintTop_toBottomOf="@id/startDateAndTimeTitle" />
+                    app:layout_constraintStart_toStartOf="@id/CheckInDateAndTimeTitle"
+                    app:layout_constraintTop_toBottomOf="@id/CheckInDateAndTimeTitle" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/startDateAndTimeText"
@@ -111,10 +124,28 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="@dimen/label_margin_vertical"
-                    app:layout_constraintBottom_toBottomOf="@id/startDateAndTimeTitle"
+                    android:textColor="@color/primary_color"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/startDateAndTimeTitle"
-                    tools:text="26/11/2019, 12:00" />
+                    app:layout_constraintBottom_toBottomOf="@id/CheckInDateAndTimeTitle"
+                    app:layout_constraintStart_toEndOf="@id/CheckInDateAndTimeTitle"
+                   android:layout_marginStart="92dp"
+                    android:layout_marginEnd="@dimen/default_margin"
+
+                    tools:text="Sun, 25 Oct 2020 00:00" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/reservedStartDateAndTimeText"
+                    style="@style/AndroidSmallBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/label_margin_vertical"
+                    app:layout_constraintBottom_toBottomOf="@id/StartDateAndTimeTitle"
+                    app:layout_constraintStart_toEndOf="@id/StartDateAndTimeTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="64dp"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    tools:text="Sun, 25 Oct 2020 00:00" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/durationTitle"
@@ -135,11 +166,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/bookingInfoWindow_horizontal_margin"
+                    android:textColor="@color/primary_color"
                     app:layout_constraintBottom_toBottomOf="@id/durationTitle"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/durationTitle"
-                    tools:layout_editor_absoluteX="178dp"
-                    tools:text="2 h 15 min" />
+                    tools:text="2 h 15 min"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    app:layout_constraintStart_toStartOf="@id/durationTitle"
+                    android:layout_marginStart="108dp"/>
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline"
@@ -189,7 +223,10 @@
                     app:layout_constraintBottom_toBottomOf="@+id/vehicleTitle"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/vehicleTitle"
-                    tools:text="BMW X3" />
+                    tools:text="BMW X3"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    app:layout_constraintStart_toStartOf="@id/vehicleTitle"
+                    android:layout_marginStart="108dp"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/estDistanceTitle"
@@ -213,7 +250,10 @@
                     app:layout_constraintBottom_toBottomOf="@+id/estDistanceTitle"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/estDistanceTitle"
-                    tools:text="20 km" />
+                    tools:text="20 km"
+                    app:layout_constraintStart_toStartOf="@id/estDistanceTitle"
+                    android:layout_marginStart="108dp"
+                    android:layout_marginEnd="@dimen/default_margin"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/endDateAndTimeTitle"
@@ -224,9 +264,20 @@
                     android:layout_marginBottom="@dimen/default_margin"
                     android:text="@string/confirm_booking_end_date_time"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/startDateAndTimeTitle"
+                    app:layout_constraintBottom_toTopOf="@+id/reservedEndDateAndTimeTitle"
+                    app:layout_constraintStart_toStartOf="@id/CheckInDateAndTimeTitle"
                     app:layout_constraintTop_toBottomOf="@id/vehicleIcon" />
-
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/reservedEndDateAndTimeTitle"
+                    style="@style/AndroidInputLabelLightLowprio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_horizontal"
+                    android:layout_marginBottom="@dimen/default_margin"
+                    android:text="@string/reserved_booking_end_date_time"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/CheckInDateAndTimeTitle"
+                    />
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/endDateAndTimeText"
                     style="@style/AndroidSmallBlack"
@@ -234,10 +285,30 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="@dimen/label_margin_vertical"
-                    app:layout_constraintBottom_toBottomOf="@id/endDateAndTimeTitle"
+                    android:textColor="@color/primary_color"
+                    android:layout_marginStart="84dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/endDateAndTimeTitle"
-                    tools:text="26/11/2019, 15:21" />
+                    android:layout_marginEnd="@dimen/default_margin"
+
+                    app:layout_constraintBottom_toBottomOf="@id/endDateAndTimeTitle"
+                    app:layout_constraintStart_toEndOf="@id/endDateAndTimeTitle"
+
+                    tools:text="Sun, 25 Oct 2020 00:00" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/reservedEndDateAndTimeText"
+                    style="@style/AndroidSmallBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/label_margin_vertical"
+                    android:layout_marginStart="72dp"
+
+                    app:layout_constraintBottom_toBottomOf="@id/reservedEndDateAndTimeTitle"
+                    app:layout_constraintStart_toEndOf="@id/reservedEndDateAndTimeTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="@dimen/default_margin"
+
+                    tools:text="Sun, 25 Oct 2020 00:00" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -270,8 +341,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ongoingActionView">
+            android:layout_marginBottom="108dp"
+            app:layout_constraintTop_toBottomOf="@+id/ongoingActionView"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/carInfoTitle"
@@ -292,18 +364,20 @@
                 android:layout_marginStart="@dimen/default_margin_horizontal"
                 android:layout_marginTop="@dimen/vehicle_card_margin_vertical"
                 android:layout_marginEnd="@dimen/default_margin_horizontal"
-                android:layout_marginBottom="@dimen/vehicle_card_margin_vertical"
+                android:layout_marginBottom="@dimen/default_card_vertical_padding"
                 android:orientation="vertical"
                 app:cardBackgroundColor="@android:color/white"
                 app:cardUseCompatPadding="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/carInfoTitle">
+
+                app:layout_constraintTop_toBottomOf="@id/carInfoTitle"
+                >
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    >
 
-                    <com.google.android.material.imageview.ShapeableImageView
+                    <ImageView
                         android:id="@+id/vehicleImage"
                         android:layout_width="0dp"
                         android:layout_height="100dp"
@@ -374,16 +448,76 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="@dimen/default_progress_bar_size"
-        android:layout_height="@dimen/default_progress_bar_size"
+    <include
+        android:id="@+id/ongoing_loading_view"
+        layout="@layout/view_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <include
+        android:id="@+id/ongoing_error_view"
+        layout="@layout/view_general_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <include
+        android:id="@+id/connecting_car_view"
+        layout="@layout/view_connecting_car"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <include
+        android:id="@+id/opening_car_view"
+        layout="@layout/view_opening_car"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <include
+        android:id="@+id/car_trip_started_view"
+        layout="@layout/view_car_trip_started"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <include
+        android:id="@+id/no_ongoing_booking_view"
+        layout="@layout/view_no_ongoing_booking"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toBottomOf="@+id/view_ongoing">
+        <include
+            android:id="@+id/confirm_end_now_view"
+            layout="@layout/view_confirm_end_now"
+            />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

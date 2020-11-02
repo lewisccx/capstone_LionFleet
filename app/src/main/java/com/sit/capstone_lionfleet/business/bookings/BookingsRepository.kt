@@ -5,6 +5,7 @@ import com.sit.capstone_lionfleet.base.response.Resource
 import com.sit.capstone_lionfleet.business.bookings.network.BookingApi
 import com.sit.capstone_lionfleet.business.bookings.network.BookingEntityMapper
 import com.sit.capstone_lionfleet.business.bookings.network.model.Booking
+import com.sit.capstone_lionfleet.business.bookings.network.model.BookingStatus
 import com.sit.capstone_lionfleet.core.di.PreferenceProvider
 import com.sit.capstone_lionfleet.dataSource.local.dao.BookingDao
 import com.sit.capstone_lionfleet.dataSource.local.model.BookingCacheMapper
@@ -24,7 +25,7 @@ constructor(
     suspend fun getBookingByStatus(bookingStatus: String): Flow<Resource<List<Booking>>> = flow {
         emit(Resource.Loading)
         try {
-
+             bookingDao.deleteAllBooking()
             val bookingsResponse = api.getUserBookingsByStatus(bookingStatus)
             val bookings =
                 bookingEntityMapper.mapFromEntityResponse(bookingsResponse.body()!!.bookings)
@@ -32,7 +33,7 @@ constructor(
                 bookingDao.insert(bookingCacheMapper.mapToEntity(booking))
             }
 
-            val cachedBookings = bookingDao.getBookingsByStatus(bookingStatus)
+            val cachedBookings = bookingDao.getBookingsByStatusAsc(bookingStatus)
             emit(Resource.Success(bookingCacheMapper.mapFromEntityList(cachedBookings)))
         } catch (throwable: Throwable) {
             when (throwable) {
@@ -53,4 +54,41 @@ constructor(
             }
         }
     }
+
+    suspend fun getHistoryBookings(): Flow<Resource<List<Booking>>> = flow {
+        emit(Resource.Loading)
+        try {
+            bookingDao.deleteAllBooking()
+            val bookingsResponse = api.getHistoryBookings()
+            val bookings =
+                bookingEntityMapper.mapFromEntityResponse(bookingsResponse.body()!!.bookings)
+            for (booking in bookings) {
+                bookingDao.insert(bookingCacheMapper.mapToEntity(booking))
+            }
+
+            val cachedBookings = bookingDao.getHistoryBookings()
+            emit(Resource.Success(bookingCacheMapper.mapFromEntityList(cachedBookings)))
+        } catch (throwable: Throwable) {
+            when (throwable) {
+                is HttpException -> {
+                    val httpFailure = Resource.Failure(
+                        false,
+                        throwable.code(),
+                        JSONObject(
+                            throwable.response()?.errorBody()!!.string()
+                        ).getString("message")
+                    )
+                    emit(httpFailure)
+                }
+                else -> {
+                    val unknownFailure = Resource.Failure(true, null, throwable.message)
+                    emit(unknownFailure)
+                }
+            }
+        }
+    }
+
+    suspend fun getCanceledBookings() = bookingDao.getBookingsByStatusDesc(BookingStatus.BSTATE_CANCELED.status)
+    suspend fun getCheckedInBookings() = bookingDao.getBookingsByStatusDesc(BookingStatus.BSTATE_CHECKEDIN.status)
+    suspend fun getOverdueBookings() = bookingDao.getBookingsByStatusDesc(BookingStatus.BSTATE_OVERDUE.status)
 }

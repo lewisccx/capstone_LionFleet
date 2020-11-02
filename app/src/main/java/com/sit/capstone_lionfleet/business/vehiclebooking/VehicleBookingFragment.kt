@@ -113,7 +113,7 @@ class VehicleBookingFragment : Fragment(R.layout.vehicle_booking_fragment),
             datePickerDialog!!.initialize(
                 this@VehicleBookingFragment,
                 now.get(Calendar.YEAR),
-                now.get(Calendar.MONTH),
+                now.get(Calendar.MONTH) ,
                 now.get(Calendar.DAY_OF_MONTH)
             )
         }
@@ -236,8 +236,9 @@ class VehicleBookingFragment : Fragment(R.layout.vehicle_booking_fragment),
     }
 
     override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
+        val month = monthOfYear + 1
         val selectedDate =
-            "$year-$monthOfYear-$dayOfMonth"
+            "$year-$month-$dayOfMonth"
         val selectDateInfo = "You picked the following date:$dayOfMonth-$monthOfYear-$year "
         timeFrameTextView.show()
         timeFrameTextView.text = selectedDate

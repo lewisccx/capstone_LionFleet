@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomSheetNavigationOptions"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="0dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <TextView
+        android:id="@+id/tvPlacePicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:padding="16dp"
+        android:gravity="center_vertical"
+        android:drawablePadding="16dp"
+        android:drawableLeft="@drawable/ic_placepicker"
+        android:drawableStart="@drawable/ic_placepicker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/place_picker"
+        android:textSize="16sp" />
+
+    <View
+        android:id="@+id/placePickerLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#bdbdbd"
+        app:layout_constraintTop_toBottomOf="@id/tvPlacePicker" />
+
+    <TextView
+        android:id="@+id/tvPlaceSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:padding="16dp"
+        android:text="@string/place_search"
+        android:gravity="center_vertical"
+        android:drawablePadding="16dp"
+        android:drawableLeft="@drawable/ic_place_search"
+        android:drawableStart="@drawable/ic_place_search"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/placePickerLine"/>
+
+    <View
+        android:id="@+id/placeSearchLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#bdbdbd"
+        app:layout_constraintTop_toBottomOf="@id/tvPlaceSearch" />
+
+    <TextView
+        android:id="@+id/tvFreeDriving"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:padding="16dp"
+        android:gravity="center_vertical"
+        android:drawablePadding="16dp"
+        android:drawableLeft="@drawable/ic_free_driving"
+        android:drawableStart="@drawable/ic_free_driving"
+        android:text="@string/free_roaming"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/placeSearchLine" />
+
+    <View
+        android:id="@+id/freeDrivingLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#bdbdbd"
+        app:layout_constraintTop_toBottomOf="@id/tvFreeDriving" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

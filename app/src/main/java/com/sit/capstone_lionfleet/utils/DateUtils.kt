@@ -10,9 +10,8 @@ class DateUtils {
         val mongoDateTimeFormatter: SimpleDateFormat =
             SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
         val ObjectDateTimeFormatter: SimpleDateFormat =
-            SimpleDateFormat("EEE, d MMM yyyy HH:mm")
+            SimpleDateFormat("EEE, dd MMM yyyy HH:mm")
 
-        val strToLocalDate: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
         fun getFormattedDuration(duration: Long, context: Context): String {
             return context.getString(
                 R.string.bookings_duration_pattern,

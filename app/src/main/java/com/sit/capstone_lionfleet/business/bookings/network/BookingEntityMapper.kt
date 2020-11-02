@@ -2,6 +2,7 @@ package com.sit.capstone_lionfleet.business.bookings.network
 
 import com.sit.capstone_lionfleet.business.bookings.network.model.Booking
 import com.sit.capstone_lionfleet.business.bookings.network.response.BookingItem
+import com.sit.capstone_lionfleet.business.bookings.network.response.Price
 import com.sit.capstone_lionfleet.business.bookings.network.response.Station
 import com.sit.capstone_lionfleet.business.bookings.network.response.Vehicle
 import com.sit.capstone_lionfleet.utils.EntityMapper
@@ -28,7 +29,10 @@ constructor() : EntityMapper<BookingItem, Booking> {
             createdAt = entity.createdAt,
             updatedAt = entity.updatedAt,
             actualCost = entity.actualCost,
-            expectedCost = entity.expectedCost
+            expectedCost = entity.expectedCost,
+            costsPerDay = entity.vehicle.price.costsPerDay,
+            costsPerKm = entity.vehicle.price.costsPerKm,
+            costsPerHour = entity.vehicle.price.costsPerHour
         )
     }
 
@@ -45,15 +49,20 @@ constructor() : EntityMapper<BookingItem, Booking> {
                 domainModel.model,
                 domainModel.brand,
                 domainModel.imageUrl,
-                domainModel.availability
-
+                domainModel.availability,
+                price = Price(
+                    domainModel.costsPerDay,
+                    domainModel.costsPerKm,
+                    domainModel.costsPerHour
+                )
             ),
             station = Station(domainModel.stationName),
             createdAt = domainModel.createdAt,
             updatedAt = domainModel.updatedAt,
             actualCost = domainModel.actualCost,
-            expectedCost = domainModel.expectedCost
-        )
+            expectedCost = domainModel.expectedCost,
+
+            )
     }
 
     fun mapFromEntityResponse(entities: List<BookingItem>): List<Booking> {

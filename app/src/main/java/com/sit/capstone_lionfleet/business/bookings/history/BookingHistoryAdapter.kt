@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sit.capstone_lionfleet.R
 import com.sit.capstone_lionfleet.business.bookings.network.model.Booking
+import com.sit.capstone_lionfleet.business.bookings.network.model.BookingStatus
 import com.sit.capstone_lionfleet.utils.DateUtils.Companion.ObjectDateTimeFormatter
 import com.sit.capstone_lionfleet.utils.DateUtils.Companion.getFormattedDuration
 import com.sit.capstone_lionfleet.utils.FormattingUtils
@@ -18,7 +19,7 @@ class BookingHistoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val differCallback = object : DiffUtil.ItemCallback<Booking>() {
         override fun areItemsTheSame(oldItem: Booking, newItem: Booking): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.id == newItem.id && oldItem.status == newItem.status
         }
 
         override fun areContentsTheSame(oldItem: Booking, newItem: Booking): Boolean {
@@ -41,7 +42,7 @@ class BookingHistoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val bookingHistory = differ.currentList[position]
         holder.itemView.apply {
             txtStationName.text = bookingHistory.stationName
-            txtDate.text = bookingHistory.checkedInTs
+            txtDate.text = bookingHistory.reservedDate
             val checkedInDateTime = ObjectDateTimeFormatter.parse(bookingHistory.checkedInTs)
             val checkedOutDateTime = ObjectDateTimeFormatter.parse(bookingHistory.checkedOutTs)
 
@@ -50,7 +51,7 @@ class BookingHistoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             )
 
             actualDuration.text = getFormattedDuration(duation, holder.itemView.context)
-                txtDistance.text =
+            txtDistance.text =
                 FormattingUtils.getFormattedBookingDistance(
                     bookingHistory.distance.toString(),
                     rootView.context
@@ -60,7 +61,13 @@ class BookingHistoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 bookingHistory.expectedCost,
                 rootView.context
             )
+            if(bookingHistory.status == BookingStatus.BSTATE_CANCELED.status){
+                startIcon.setImageDrawable(this.context.getDrawable( R.drawable.ic_booking_canceled))
+            }
 
+            if(bookingHistory.status == BookingStatus.BSTATE_OVERDUE.status){
+                startIcon.setImageDrawable(this.context.getDrawable( R.drawable.ic_booking_overdue_gray))
+            }
             setOnClickListener {
                 onItemClickListener?.let {
                     it(bookingHistory)

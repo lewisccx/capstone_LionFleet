@@ -11,7 +11,7 @@ import retrofit2.http.Path
 
 interface VehicleBookingApi {
 
-    @GET("bookings/vehicle/{vehicleId}/schedule")
+    @GET("bookings/vehicle/{vehicleId}/unavailable")
     suspend fun getVehicleBookingSchedule(@Path("vehicleId") vehicleId: String): Response<VehicleScheduleResponse>
 
     @POST("bookings/{vehicleId}")

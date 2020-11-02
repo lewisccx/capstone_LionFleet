@@ -26,4 +26,22 @@
     <color name="intro_btn_gradient_start_color">#4c84ff</color>
     <color name="intro_btn_gradient_end_color">#18a3fe</color>
     <color name="tab_indicator_gray">#c0c0c0</color>
+
+    <!-- Custom Route Colors -->
+    <color name="customRouteCasingColor">#FA0A4E</color>
+    <color name="customRouteColor">#ffffff</color>
+    <color name="customRouteLowCongestionColor">#00ff00</color>
+    <color name="customRouteUnknownCongestionColor">#a8aaba</color>
+    <color name="customRouteModerateCongestionColor">#CFAC00</color>
+    <color name="customRouteHeavyCongestionColor">#D16100</color>
+    <color name="customRouteSevereCongestionColor">#FF0000</color>
+    <color name="customRouteLineTraveledColor">#a8aaba</color>
+    <color name="customRouteLineCasingTraveledColor">#6E707A</color>
+
+    <color name="customAlternativeRouteColor">#7EC8CF</color>
+    <color name="customAlternativeRouteUnknownCongestionColor">#7EC8CF</color>
+    <color name="customAlternativeRouteModerateCongestionColor">#76BCC2</color>
+    <color name="customAlternativeRouteHeavyCongestionColor">#67A3A8</color>
+    <color name="customAlternativeRouteSevereCongestionColor">#4F7E82</color>
+    <color name="customAlternativeRouteCasingColor">#284042</color>
 </resources>

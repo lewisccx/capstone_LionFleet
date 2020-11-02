@@ -5,6 +5,9 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@id/navigation_map">
 
+    <action android:id="@+id/action_global_to_navigation_ongoing"
+        app:destination="@+id/navigation_ongoing"
+        app:launchSingleTop="true"/>
 
     <fragment
         android:id="@+id/navigation_profile"
@@ -21,12 +24,19 @@
         <action
             android:id="@+id/action_navigation_map_to_vehicleBookingFragment"
             app:destination="@id/vehicleBookingFragment" />
+        <action
+            android:id="@+id/action_navigation_map_to_mapNavigationOptionBottomSheet"
+            app:destination="@id/mapNavigationOptionBottomSheet" />
     </fragment>
     <fragment
         android:id="@+id/navigation_ongoing"
         android:name="com.sit.capstone_lionfleet.business.bookings.ongoing.OngoingFragment"
         android:label="ongoing_fragment"
-        tools:layout="@layout/ongoing_fragment" />
+        tools:layout="@layout/ongoing_fragment" >
+        <action
+            android:id="@+id/action_navigation_ongoing_to_carKeyFragment"
+            app:destination="@id/carKeyFragment" />
+    </fragment>
     <fragment
         android:id="@+id/vehicleBookingFragment"
         android:name="com.sit.capstone_lionfleet.business.vehiclebooking.VehicleBookingFragment"
@@ -38,6 +48,31 @@
             android:name="SelectedVehicle"
             app:argType="com.sit.capstone_lionfleet.business.map.network.model.Vehicle"
             app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapboxNavigationFragment"
+        android:name="com.sit.capstone_lionfleet.business.map.MapboxNavigationFragment"
+        android:label="MapboxNavigationFragment" >
+        <action
+            android:id="@+id/action_mapboxNavigationFragment_to_navigation_map"
+            app:destination="@id/navigation_map" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapNavigationOptionBottomSheet"
+        android:name="com.sit.capstone_lionfleet.business.map.MapNavigationOptionBottomSheet"
+        android:label="MapNavigationOptionBottomSheet" >
+        <action
+            android:id="@+id/action_mapNavigationOptionBottomSheet_to_mapboxNavigationFragment"
+            app:destination="@id/mapboxNavigationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/carKeyFragment"
+        android:name="com.sit.capstone_lionfleet.business.bookings.ongoing.CarKeyFragment"
+        android:label="fragment_car_key"
+        tools:layout="@layout/fragment_car_key" >
+        <action
+            android:id="@+id/action_carKeyFragment_to_navigation_ongoing"
+            app:destination="@id/navigation_ongoing" />
     </fragment>
 
 </navigation>

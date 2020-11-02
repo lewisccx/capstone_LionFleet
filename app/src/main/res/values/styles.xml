@@ -315,4 +315,11 @@
         <item name="colorOnPrimary">@color/primary_color</item>
         <item name="colorOnPrimarySurface">@color/primary_color</item>
     </style>
+
+    <style name="MaterialBottomSheetDialog" parent="@style/Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
+    </style>
 </resources>

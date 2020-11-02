@@ -29,6 +29,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/totalAmountPayTitle"
-        tools:text="32,50 €" />
+        tools:text="$ 32,50" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

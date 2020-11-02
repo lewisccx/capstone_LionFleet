@@ -18,6 +18,7 @@ import com.sit.capstone_lionfleet.business.bookings.BookingsViewModel
 import com.sit.capstone_lionfleet.core.extension.hide
 import com.sit.capstone_lionfleet.core.extension.show
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_bookings.*
 import kotlinx.android.synthetic.main.history_fragment.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -63,15 +64,16 @@ class HistoryFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         Log.d(TAG, "onResume")
-        performBookingsAction(BookingsStateEvent.GetCheckInBookings)
+        performBookingsAction(BookingsStateEvent.GetHistoryBookings)
+
     }
 
     private fun performBookingsAction(event: BookingsStateEvent) {
-        viewModel.setBookingsStateEvent(BookingsStateEvent.GetCheckInBookings)
+        viewModel.setBookingsStateEvent(event, "0" ,"0")
     }
 
     private fun observeViewModel() {
-        viewModel.checkedInBookingDataState.observe(viewLifecycleOwner, Observer { dataState ->
+        viewModel.completedBookingDataState.observe(viewLifecycleOwner, Observer { dataState ->
             when (dataState) {
                 is Resource.Success -> {
                     HistoryProgressBar.hide()
@@ -106,5 +108,10 @@ class HistoryFragment : Fragment() {
             resources.getString(R.string.something_went_wrong_error),
             Toast.LENGTH_SHORT
         ).show()
+    }
+
+    override fun onAttachFragment(childFragment: Fragment) {
+        super.onAttachFragment(childFragment)
+
     }
 }

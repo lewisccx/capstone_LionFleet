@@ -2,7 +2,6 @@ package com.sit.capstone_lionfleet.business.bookings.network
 
 import com.sit.capstone_lionfleet.business.vehiclebooking.network.model.VehicleSchedule
 import com.sit.capstone_lionfleet.business.vehiclebooking.network.response.VehicleScheduleResponse
-import com.sit.capstone_lionfleet.utils.DateUtils.Companion.strToLocalDate
 import com.sit.capstone_lionfleet.utils.EntityMapper
 import java.time.LocalDate
 import javax.inject.Inject

@@ -7,10 +7,20 @@
     <!--    mapbox-->
     <string name="mapbox_access_token">pk.eyJ1IjoibGV3aXNjY3giLCJhIjoiY2s3ZzI1YnI2MDAxNjNlb2IxZHk0bzQ4cyJ9.KGCWmEWvYHnBfKec11rf3g</string>
     <!--    End of mapbox-->
-<!--    Alan-->
+    <!--    Alan-->
     <string name="alan_access_token">cb13a0a22f6c3251f93f97723d75f9a82e956eca572e1d8b807a3e2338fdd0dc/stage</string>
 
     <!--    End of Alan-->
+    <string name="msg_click_to_show_route">Click anywhere on the map to show route</string>
+    <!--    History-->
+    <string-array name="filter_options">
+        <item>All</item>
+        <item>Cancelled</item>
+        <item>Completed</item>
+        <item>Overdue</item>
+
+    </string-array>
+<!--    End of History-->
     <!-- Sign up -->
     <string name="sign_up_header">Sign up</string>
     <string name="sign_up_hint_email">EMAIL</string>
@@ -157,8 +167,9 @@
     <string name="start_trip">Start Trip</string>
     <string name="confirm_booking">Confirm your booking</string>
     <string name="confirm_booking_subtitle">Confirmed bookings will be listed in \"Bookings\"</string>
-    <string name="confirm_booking_start_date_time">Start date and time</string>
-    <string name="confirm_booking_end_date_time">End date and time</string>
+    <string name="confirm_booking_start_date_time">Checked In date and time</string>
+    <string name="reserved_booking_start_date_time">Reserved start date and time</string>
+    <string name="confirm_booking_end_date_time">Checked Out date and time</string>
     <string name="selected_time_frame">Selected time frame</string>
     <string name="selected_duration">Selected Duration</string>
     <string name="estimated_range">Estimated Range</string>
@@ -173,7 +184,7 @@
     <string name="welcome_message">Welcome to Cityfleet.</string>
     <!-- End of splash screen -->
 
-<!--    MapBox-->
+    <!--    MapBox-->
     <string name="mapbox_error_no_connectivity">You might have issues viewing the map because your device isn\'t connected to the internet.</string>
 
     <!--    End of MapBox-->
@@ -265,6 +276,7 @@
     <string name="duration_txt">Duration</string>
     <string name="actual_dist_txt">Actual Distance</string>
     <string name="est_dist_txt">Est. Distance</string>
+    <string name="est_cost">Est. Cost</string>
     <string name="est_dist_time_left_txt">%s left</string>
     <string name="end_now_txt">End now</string>
     <!-- End of Current Booking -->
@@ -371,6 +383,21 @@
 
     <string name="mapbox_dataset_error">Mapbox dataset key and value is refreshing in progress</string>
     <string name="reserved_to_startable_too_early_error">Sorry, you only can start your booking 15 mins before the 12am of the day</string>
+    <string name="booking_set_to_startable_success">"You have started your booking successfully ... ... "</string>
+    <string name="reserved_booking_end_date_time">Reserved end date and time</string>
+    <string name="ongoing_booking_id_not_found">The booking data is corrupted, please cancel it immediately</string>
+    <string name="ongoing_booking_past_reserved_datetime">Oops! You have past your booking time duration, please make a new booking</string>
+    <string name="car_trip_successful_started">Trip has successfully started! Have a safe trip</string>
+    <string name="confirm_end_now_txt">Confirm end now</string>
+    <string name="bookings_no_ongoing">You currently have no ongoing booking listed.\nNeed some help to book a ride?</string>
+    <string name="place_picker">Place Picker</string>
+    <string name="place_search">Place Search</string>
+    <string name="free_roaming">Free Roaming</string>
+    <string name="start_navigation">Start Navigation</string>
+    <string name="cancel_navigation">Cancel</string>
+    <string name="no_distination_latlng_error">Destination coordinate cannot be found</string>
+    <string name="info_window_vehicles_available_now">Available Now</string>
+    <string name="locking_car_msg">Locking your car ......</string>
     <!-- End of Support-->
 
 </resources>

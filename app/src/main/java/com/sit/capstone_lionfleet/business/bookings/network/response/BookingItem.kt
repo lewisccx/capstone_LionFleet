@@ -7,6 +7,7 @@ data class BookingItem(
     @SerializedName("_id") val id: String,
     @SerializedName("vehicle") val vehicle: Vehicle,
     @SerializedName("station") val station: Station,
+
     val reservedDate: String,
     val checkedInTs: String,
     val checkedOutTs: String,

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/successfulView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/default_margin_horizontal_parent"
+    android:theme="@style/Theme.Material_Light">
+
+    <ImageView
+        android:id="@+id/ivCloseSuccess"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:clickable="true"
+        android:contentDescription="@null"
+        android:padding="6dp"
+        android:src="@drawable/ic_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivSuccessfulImage"
+        android:layout_width="@dimen/default_center_icon_size"
+        android:layout_height="@dimen/default_center_icon_size"
+        android:layout_above="@+id/txtSuccessfulMessage"
+        android:adjustViewBounds="true"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_booking_success"
+        app:layout_constraintBottom_toTopOf="@id/btnOkay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/txtEndTripError"
+        style="@style/AndroidTabLabelLightLowprio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/default_margin"
+        android:text="@string/end_trip_success_msg"
+        app:layout_constraintBottom_toTopOf="@id/btnOkay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivSuccessfulImage" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnOkay"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/color_states_material_primary_button"
+        android:text="@string/ok_booking"
+        android:textAllCaps="false"
+        android:textAppearance="@style/AndroidButtonLabelWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnReportProblem"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:background="@drawable/state_secondary_btn"
+        android:text="@string/report_problem_txt"
+        android:textAllCaps="false"
+        android:textAppearance="@style/AndroidButtonLabelWhite"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnOkay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

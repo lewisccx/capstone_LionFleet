@@ -4,9 +4,11 @@ import com.sit.capstone_lionfleet.business.bookings.BookingsRepository
 import com.sit.capstone_lionfleet.business.bookings.network.BookingApi
 import com.sit.capstone_lionfleet.business.bookings.network.BookingEntityMapper
 import com.sit.capstone_lionfleet.business.bookings.network.VehicleScheduleEntityMapper
+import com.sit.capstone_lionfleet.business.bookings.ongoing.OngoingRepository
 import com.sit.capstone_lionfleet.business.bookings.scheduled.ScheduledRepository
 import com.sit.capstone_lionfleet.business.map.StationRepository
 import com.sit.capstone_lionfleet.business.map.network.StationApi
+import com.sit.capstone_lionfleet.business.map.network.StationVehicleAvailabilityMapper
 import com.sit.capstone_lionfleet.business.map.network.VehicleEntityMapper
 import com.sit.capstone_lionfleet.business.profile.ProfileRepository
 import com.sit.capstone_lionfleet.business.profile.network.ProfileApi
@@ -83,6 +85,7 @@ object RepositoryModule {
         stationApi: StationApi,
         vehicleDao: VehicleDao,
         vehicleEntityMapper: VehicleEntityMapper,
+        stationVehicleAvailabilityMapper: StationVehicleAvailabilityMapper,
         vehicleCacheMapper: VehicleCacheMapper,
         preferenceProvider: PreferenceProvider
     ): StationRepository {
@@ -90,6 +93,7 @@ object RepositoryModule {
             stationApi,
             vehicleDao,
             vehicleEntityMapper,
+            stationVehicleAvailabilityMapper,
             vehicleCacheMapper,
             preferenceProvider
 
@@ -121,5 +125,14 @@ object RepositoryModule {
 
         ): ScheduledRepository {
         return ScheduledRepository(api)
+    }
+
+    @Singleton
+    @Provides
+    fun provideOngoingRepository(
+        api: BookingApi,
+        bookingEntityMapper: BookingEntityMapper
+    ): OngoingRepository {
+        return OngoingRepository(api, bookingEntityMapper)
     }
 }

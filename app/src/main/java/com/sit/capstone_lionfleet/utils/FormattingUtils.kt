@@ -43,6 +43,17 @@ class FormattingUtils {
             )
         }
 
+        fun getFormattedEndBookingPrice(
+            actualCost: Double?,
+
+            context: Context
+        ): String {
+            return context.getString(
+                R.string.bookings_price_pattern,
+                actualCost
+            )
+        }
+
         fun getFormattedTimeLeft(time: String, context: Context): String {
             return context.getString(
                 R.string.est_dist_time_left_txt, time

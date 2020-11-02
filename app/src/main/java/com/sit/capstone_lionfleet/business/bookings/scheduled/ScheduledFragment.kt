@@ -19,7 +19,9 @@ import com.sit.capstone_lionfleet.business.bookings.network.model.Booking
 import com.sit.capstone_lionfleet.core.extension.hide
 import com.sit.capstone_lionfleet.core.extension.show
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_bookings.*
 import kotlinx.android.synthetic.main.scheduled_fragment.*
+import okhttp3.internal.notifyAll
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.ZonedDateTime
@@ -58,13 +60,38 @@ class ScheduledFragment : Fragment(R.layout.scheduled_fragment), ItemClickListen
         super.onResume()
         Log.d(TAG, "onResume")
         performBookingsAction(BookingsStateEvent.GetReservedBookings)
+
     }
 
     private fun performBookingsAction(event: BookingsStateEvent) {
-        viewModel.setBookingsStateEvent(BookingsStateEvent.GetReservedBookings)
+        viewModel.setBookingsStateEvent(event, "0","0")
     }
 
     private fun observeViewModel() {
+
+        viewModel.updatedBookingsDataState.observe(viewLifecycleOwner, Observer { dataState ->
+            when (dataState) {
+                is Resource.Success -> {
+                    scheduledProgressBar.hide()
+                    viewModel.setBookingsStateEvent(BookingsStateEvent.GetReservedBookings, "0", "0")
+                    Toast.makeText(
+                        requireContext(),
+                        resources.getString(R.string.booking_set_to_startable_success),
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
+
+                }
+                is Resource.Failure -> {
+                    scheduledProgressBar.hide()
+                    displayError(dataState.errorBody!!)
+                }
+                is Resource.Loading -> {
+                    scheduledProgressBar.show()
+                }
+            }
+        })
+
         viewModel.reservedBookingsDataState.observe(viewLifecycleOwner, Observer { dataState ->
             when (dataState) {
                 is Resource.Success -> {
@@ -84,7 +111,7 @@ class ScheduledFragment : Fragment(R.layout.scheduled_fragment), ItemClickListen
                 }
                 is Resource.Failure -> {
                     scheduledProgressBar.hide()
-                    displayError()
+                    displayError(dataState.errorBody!!)
                 }
                 is Resource.Loading -> {
                     scheduledProgressBar.show()
@@ -93,31 +120,31 @@ class ScheduledFragment : Fragment(R.layout.scheduled_fragment), ItemClickListen
         })
     }
 
-    private fun displayError() {
+    private fun displayError(error: String) {
         Toast.makeText(
             requireContext(),
-            resources.getString(R.string.something_went_wrong_error),
+            error,
             Toast.LENGTH_SHORT
         ).show()
     }
 
-    private fun performUpdateBookingToStartableAction(event: BookingsStateEvent) {
-        viewModel.setBookingsStateEvent(event)
+    private fun performUpdateBookingToStartableAction(
+        event: BookingsStateEvent,
+        bookingId: String
+    ) {
+        viewModel.setBookingsStateEvent(event, bookingId, "0")
     }
 
     override fun onItemClicked(button: MaterialButton, booking: Booking) {
         when (button.id) {
 
             R.id.btnStartNow -> {
-                view
-                Toast.makeText(
-                    requireContext(),
-                    booking.reservedDate,
-                    Toast.LENGTH_SHORT
-                ).show()
                 val timeValidated = validateCurrentDateTime(booking.reservedDate)
                 if (timeValidated) {
-                    performUpdateBookingToStartableAction(BookingsStateEvent.UpdateReservedBookingToStartable)
+                    performUpdateBookingToStartableAction(
+                        BookingsStateEvent.UpdateReservedBookingToStartable,
+                        booking.id
+                    )
                 } else {
                     Toast.makeText(
                         requireContext(),
@@ -150,9 +177,14 @@ class ScheduledFragment : Fragment(R.layout.scheduled_fragment), ItemClickListen
         val duration = ChronoUnit.MINUTES.between(currentDateTime, reservedDateTime)
 
         Log.d(TAG, duration.toString())
-        Log.d(TAG, " now: $currentDateTime")
+        Log.d(TAG, "now: $currentDateTime")
         Log.d(TAG, "reservedDateTime: $reservedDateTime")
 
-        return duration < 15
+        return duration in -1380..239
+    }
+
+    override fun onAttachFragment(childFragment: Fragment) {
+        super.onAttachFragment(childFragment)
+
     }
 }

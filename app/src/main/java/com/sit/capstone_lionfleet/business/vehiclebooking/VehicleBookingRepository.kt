@@ -15,6 +15,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import org.json.JSONObject
 import retrofit2.HttpException
+import java.time.LocalDate
+import java.time.LocalDateTime
 
 class VehicleBookingRepository constructor(
     private val api: VehicleBookingApi,
@@ -74,14 +76,35 @@ class VehicleBookingRepository constructor(
         reservedDate: String
     ): Flow<Resource<NewVehicleBookingResponse>> = flow {
         emit(Resource.Loading)
-        val userId = preferenceProvider.getLoggedInUserId()
-        val stationId = vehicleDao.getVehiclesById(vehicleId).stationId
-        val newVehicleBookingRequest =
-            buildNewVehicleBookingRequest(vehicleId, stationId, userId!!, reservedDate)
-        val newVehicleBookingResponse = safeApiCall {
-            api.newVehicleBooking(newVehicleBookingRequest, vehicleId)
+        try {
+            val userId = preferenceProvider.getLoggedInUserId()
+            val stationId = vehicleDao.getVehiclesById(vehicleId).stationId
+
+
+            val newVehicleBookingRequest =
+                buildNewVehicleBookingRequest(vehicleId, stationId, userId!!, reservedDate)
+            val newVehicleBookingResponse = safeApiCall {
+                api.newVehicleBooking(newVehicleBookingRequest, vehicleId)
+            }
+            emit(newVehicleBookingResponse)
+        } catch (throwable: Throwable) {
+            when (throwable) {
+                is HttpException -> {
+                    val httpFailure = Resource.Failure(
+                        false,
+                        throwable.code(),
+                        JSONObject(
+                            throwable.response()?.errorBody()!!.string()
+                        ).getString("message")
+                    )
+                    emit(httpFailure)
+                }
+                else -> {
+                    val unknownFailure = Resource.Failure(true, null, throwable.message)
+                    emit(unknownFailure)
+                }
+            }
         }
-        emit(newVehicleBookingResponse)
 
     }
 }

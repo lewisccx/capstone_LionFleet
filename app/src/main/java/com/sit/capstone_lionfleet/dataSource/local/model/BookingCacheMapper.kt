@@ -26,7 +26,10 @@ constructor() : EntityMapper<BookingCacheEntity, Booking> {
             createdAt = ObjectDateTimeFormatter.format(entity.createdAt),
             updatedAt = ObjectDateTimeFormatter.format(entity.updatedAt),
             actualCost = entity.actualCost,
-            expectedCost = entity.expectedCost
+            expectedCost = entity.expectedCost,
+            costsPerHour = entity.costsPerHour,
+            costsPerDay = entity.costsPerDay,
+            costsPerKm = entity.costsPerKm
         )
     }
 
@@ -47,7 +50,10 @@ constructor() : EntityMapper<BookingCacheEntity, Booking> {
             createdAt = mongoDateTimeFormatter.parse(domainModel.createdAt),
             updatedAt = mongoDateTimeFormatter.parse(domainModel.updatedAt),
             actualCost = domainModel.actualCost,
-            expectedCost = domainModel.expectedCost
+            expectedCost = domainModel.expectedCost,
+            costsPerKm = domainModel.costsPerKm,
+            costsPerDay = domainModel.costsPerDay,
+            costsPerHour = domainModel.costsPerHour
         )
     }
 

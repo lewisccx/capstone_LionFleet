@@ -3,7 +3,9 @@ package com.sit.capstone_lionfleet.business.map
 import com.sit.capstone_lionfleet.base.repository.BaseRepository
 import com.sit.capstone_lionfleet.base.response.Resource
 import com.sit.capstone_lionfleet.business.map.network.StationApi
+import com.sit.capstone_lionfleet.business.map.network.StationVehicleAvailabilityMapper
 import com.sit.capstone_lionfleet.business.map.network.VehicleEntityMapper
+import com.sit.capstone_lionfleet.business.map.network.model.StationVehicleStatus
 import com.sit.capstone_lionfleet.business.map.network.model.Vehicle
 import com.sit.capstone_lionfleet.core.di.PreferenceProvider
 import com.sit.capstone_lionfleet.dataSource.local.dao.VehicleDao
@@ -18,6 +20,7 @@ constructor(
     private val api: StationApi,
     private val vehicleDao: VehicleDao,
     private val vehicleEntityMapper: VehicleEntityMapper,
+    private val stationVehicleAvailabilityMapper: StationVehicleAvailabilityMapper,
     private val vehicleCacheMapper: VehicleCacheMapper,
     private val preferenceProvider: PreferenceProvider
 ) : BaseRepository() {
@@ -53,11 +56,38 @@ constructor(
         }
     }
 
-    fun saveSelectedVehicleIdAsPref(vehicleId: String){
+    suspend fun getStationVehicleAvailability(stationId: String): Flow<Resource<StationVehicleStatus>> =
+        flow {
+            try {
+                val stationVehicleAvailableResponse = api.getStationVehicleAvailability(stationId)
+                val stationVehicleStatus =
+                    stationVehicleAvailabilityMapper.mapFromEntity(stationVehicleAvailableResponse)
+                emit(Resource.Success(stationVehicleStatus))
+            } catch (throwable: Throwable) {
+                when (throwable) {
+                    is HttpException -> {
+                        val httpFailure = Resource.Failure(
+                            false,
+                            throwable.code(),
+                            JSONObject(
+                                throwable.response()?.errorBody()!!.string()
+                            ).getString("message")
+                        )
+                        emit(httpFailure)
+                    }
+                    else -> {
+                        val unknownFailure = Resource.Failure(true, null, throwable.message)
+                        emit(unknownFailure)
+                    }
+                }
+            }
+        }
+
+    fun saveSelectedVehicleIdAsPref(vehicleId: String) {
         preferenceProvider.saveSelectedVehicleIdAsPref(vehicleId)
     }
 
-    fun getSavedSelectedVehicleId(){
+    fun getSavedSelectedVehicleId() {
         preferenceProvider.getSelectedVehicleId()
     }
 }

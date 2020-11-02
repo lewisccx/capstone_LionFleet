@@ -27,5 +27,8 @@ data class BookingCacheEntity(
     @ColumnInfo(name = "station_name")
     val stationName: String,
     val actualCost: Double,
-    val expectedCost: Double
+    val expectedCost: Double,
+    val costsPerDay:Int,
+    val costsPerKm: Int,
+    val costsPerHour: Int
 )

@@ -9,15 +9,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sit.capstone_lionfleet.R
 import com.sit.capstone_lionfleet.business.bookings.network.model.Booking
-import kotlinx.android.synthetic.main.view_booking_history_item.view.*
 import kotlinx.android.synthetic.main.view_booking_overview.view.*
 import kotlinx.android.synthetic.main.view_booking_vehicle_info.view.*
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class BookingScheduledAdapter(private val itemClickListener: ItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val differCallback = object : DiffUtil.ItemCallback<Booking>() {
         override fun areItemsTheSame(oldItem: Booking, newItem: Booking): Boolean {
-            return oldItem.id == newItem.id && oldItem.status == newItem.status
+            return oldItem.id === newItem.id && oldItem.status === newItem.status
         }
 
         override fun areContentsTheSame(oldItem: Booking, newItem: Booking): Boolean {
@@ -41,7 +43,7 @@ class BookingScheduledAdapter(private val itemClickListener: ItemClickListener) 
         holder.itemView.apply {
             Glide.with(this).load(bookingScheduled.imageUrl).into(imgVehicle)
             txtStartDate.text = bookingScheduled.reservedDate
-            txtEndDate.text = bookingScheduled.reservedDate
+            txtEndDate.text = endDateFormatter(bookingScheduled.reservedDate)
             txtLicensePlate.text = bookingScheduled.plate
             txtLocation.text = bookingScheduled.stationName
             btnStartNow.setOnClickListener {
@@ -52,6 +54,13 @@ class BookingScheduledAdapter(private val itemClickListener: ItemClickListener) 
                 itemClickListener.onItemClicked(it.btnCancel, bookingScheduled)
             }
         }
+    }
+
+    private fun endDateFormatter(endDate : String): String{
+        val formatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm")
+        val formattedEndDate = LocalDateTime.parse(endDate, formatter)
+        val convertedEndDate = formattedEndDate.plusDays(1)
+        return convertedEndDate.format(formatter)
     }
 
     override fun getItemCount(): Int {

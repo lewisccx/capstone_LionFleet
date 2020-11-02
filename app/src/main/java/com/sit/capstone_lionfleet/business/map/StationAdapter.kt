@@ -33,6 +33,7 @@ class StationAdapter constructor(
         val txtPricePerKm = view.findViewById<TextView>(R.id.textPricePerKm)
         val txtPricePerDay = view.findViewById<TextView>(R.id.textPricePerDay)
         val isAvailableFlag = view.findViewById<ImageView>(R.id.isAvailableFlag)
+        val availableMsg = view.findViewById<TextView>(R.id.availableMsg)
         imageService.loadImage(vehicle.imageUrl, vehicleImage)
         if (vehicle.isDiesel) {
             txtEngineType.text = container.context.resources.getString(R.string.engineDisel)
@@ -40,6 +41,7 @@ class StationAdapter constructor(
         }
         if(!vehicle.availability){
             isAvailableFlag.setImageDrawable(container.context.getDrawable(R.drawable.ic_wrong))
+            availableMsg.text = "Currently Rented"
         }
         txtLicense.text = vehicle.plate
         txtModelBrand.text = "${vehicle.brand} ${vehicle.model}"

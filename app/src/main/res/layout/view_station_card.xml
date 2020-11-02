@@ -83,7 +83,7 @@
             tools:text="Location title" />
 
         <TextView
-            android:id="@+id/station_address_tv"
+            android:id="@+id/station_vehicles_availability"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/smaller_margin"
